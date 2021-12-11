@@ -1,0 +1,2821 @@
+Started GET "/?redirect_url=http://localhost:3001/" for ::1 at 2021-12-06 18:38:18 +0530
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate RAILS_ENV=development
+
+):
+  
+activerecord (5.2.6) lib/active_record/migration.rb:579:in `check_pending!'
+activerecord (5.2.6) lib/active_record/migration.rb:556:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.6) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.6) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.6) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.6) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.6) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.6) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+railties (5.2.6) lib/rails/engine.rb:524:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ bin/rails:11
+  [1m[35m (5.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  ↳ bin/rails:11
+  [1m[35m (3.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ bin/rails:11
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:11
+Migrating to DeviseCreateUsers (20191102073017)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:11
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20191102073017_devise_create_users.rb:5
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  ↳ db/migrate/20191102073017_devise_create_users.rb:38
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  ↳ db/migrate/20191102073017_devise_create_users.rb:39
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20191102073017"]]
+  ↳ bin/rails:11
+  [1m[35m (3.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:11
+Migrating to CreateTokens (20191102082211)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:11
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "tokens" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "token" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_ac8a5d0441"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  ↳ db/migrate/20191102082211_create_tokens.rb:5
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE  INDEX "index_tokens_on_user_id" ON "tokens" ("user_id")[0m
+  ↳ db/migrate/20191102082211_create_tokens.rb:5
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20191102082211"]]
+  ↳ bin/rails:11
+  [1m[35m (2.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:11
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:11
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:11
+  [1m[36mActiveRecord::InternalMetadata Create (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-12-06 13:08:34.741331"], ["updated_at", "2021-12-06 13:08:34.741331"]]
+  ↳ bin/rails:11
+  [1m[35m (2.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:11
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:11
+Started GET "/" for ::1 at 2021-12-06 18:38:50 +0530
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Processing by SsoController#index as HTML
+Completed 401 Unauthorized in 11ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2021-12-06 18:38:50 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /usr/share/rvm/gems/ruby-2.4.5@client/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client/gems/devise-4.8.0/app/views/devise/shared/_links.html.erb (1.9ms)
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application (21.9ms)
+Completed 200 OK in 582ms (Views: 568.0ms | ActiveRecord: 0.8ms)
+
+
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:11
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "santattech@gmail.com"], ["encrypted_password", "$2a$11$ibFBlbOj8hMt782rhWV5OuXi/FZhVvIPWrY8TdwHWSR.eFaR1UW6a"], ["created_at", "2021-12-06 13:10:02.399256"], ["updated_at", "2021-12-06 13:10:02.399256"]]
+  [1m[35m (2.4ms)[0m  [1m[36mcommit transaction[0m
+Started POST "/users/sign_in" for ::1 at 2021-12-06 18:40:26 +0530
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"mWKv+TQ+OtGtR2CU5PcOhKbyp3PkJyUf/eLH/BM2/UnsvkEvB84zMbxrZx3m1Uo7fgEX7saK4KEMN9FUbCre1w==", "user"=>{"email"=>"santattech@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Redirected to http://localhost:3000/
+Completed 302 Found in 198ms (ActiveRecord: 1.6ms)
+
+
+Started GET "/" for ::1 at 2021-12-06 18:40:26 +0530
+Processing by SsoController#index as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  Rendering sso/index.html.erb within layouts/application
+  Rendered sso/index.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 308ms (Views: 301.9ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/?redirect_url=http://localhost:3001/" for ::1 at 2021-12-06 18:40:52 +0530
+Processing by SsoController#index as HTML
+  Parameters: {"redirect_url"=>"http://localhost:3001/"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  [1m[36mToken Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "tokens" WHERE "tokens"."token" = ? LIMIT ?[0m  [["token", "c9138916e4c13cefbdf291d73f319af4"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:9
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/sso_controller.rb:11
+  [1m[36mToken Create (0.4ms)[0m  [1m[32mINSERT INTO "tokens" ("user_id", "token", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["token", "c9138916e4c13cefbdf291d73f319af4"], ["created_at", "2021-12-06 13:10:52.355075"], ["updated_at", "2021-12-06 13:10:52.355075"]]
+  ↳ app/controllers/sso_controller.rb:11
+  [1m[35m (3.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/sso_controller.rb:11
+Redirected to http://localhost:3001/?token=c9138916e4c13cefbdf291d73f319af4
+Completed 302 Found in 46ms (ActiveRecord: 5.0ms)
+
+
+Started GET "/sso/verify_token?token=c9138916e4c13cefbdf291d73f319af4" for 127.0.0.1 at 2021-12-06 18:41:55 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"c9138916e4c13cefbdf291d73f319af4"}
+  [1m[36mToken Load (0.6ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "c9138916e4c13cefbdf291d73f319af4"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:21
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:25
+Completed 200 OK in 17ms (Views: 0.4ms | ActiveRecord: 1.0ms)
+
+
+Started DELETE "/users/sign_out" for ::1 at 2021-12-06 18:43:42 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"fTuLCr9SNNTjVGMtPohRkHbqvBlj7OTlq+lVyYD0hzcoaVOpgKqalyEmdu7wHaWLoW3w0xYU8f4a3tQB6k0puw=="}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Redirected to http://localhost:3000/
+Completed 302 Found in 21ms (ActiveRecord: 1.7ms)
+
+
+Started GET "/" for ::1 at 2021-12-06 18:43:42 +0530
+Processing by SsoController#index as HTML
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2021-12-06 18:43:42 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /usr/share/rvm/gems/ruby-2.4.5@client/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client/gems/devise-4.8.0/app/views/devise/shared/_links.html.erb (1.7ms)
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application (12.0ms)
+Completed 200 OK in 38ms (Views: 35.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for ::1 at 2021-12-06 18:44:01 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"81gFPxt4Ds2EgcC+TZ8G5N8s+6XIBNxxxvPQypoX5v5JuzOKtHjHaoLKdabjlVT2d/cyLEU/mHsOHloGhf5iaA==", "user"=>{"email"=>"santattech@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Redirected to http://localhost:3000/
+Completed 302 Found in 168ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/" for ::1 at 2021-12-06 18:44:01 +0530
+Processing by SsoController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.3ms)
+
+
+  
+NoMethodError (undefined method `pry' for #<Binding:0x00007fa23c050c90>
+Did you mean?  try):
+  
+app/controllers/sso_controller.rb:6:in `index'
+Started GET "/" for ::1 at 2021-12-06 18:44:34 +0530
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Processing by SsoController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  Rendering sso/index.html.erb within layouts/application
+  Rendered sso/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 21411ms (Views: 303.6ms | ActiveRecord: 1.8ms)
+
+
+Started DELETE "/users/sign_out" for ::1 at 2021-12-06 18:45:00 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"jZ9haNFYx+RvsUq2HJPoFLS4ZuEymq73rSdeLIqJiFjmapo6ke4SFZLCBpUl4VN1JK5ZwzkXrxpnZtauB8Vulw=="}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Redirected to http://localhost:3000/
+Completed 302 Found in 13ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/" for ::1 at 2021-12-06 18:45:00 +0530
+Processing by SsoController#index as HTML
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2021-12-06 18:45:00 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /usr/share/rvm/gems/ruby-2.4.5@client/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client/gems/devise-4.8.0/app/views/devise/shared/_links.html.erb (2.4ms)
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application (10.4ms)
+Completed 200 OK in 37ms (Views: 33.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for ::1 at 2021-12-06 18:45:17 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"2El3ca28vw82WvIJ6mceAxgDqtDjyz47v3TMeXs1jIkWEoLJtQ577rWZI/VxZMgfFesqvVcIbGrIykgHzCNyEg==", "user"=>{"email"=>"santattech@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Redirected to http://localhost:3000/
+Completed 302 Found in 193ms (ActiveRecord: 2.0ms)
+
+
+Started GET "/" for ::1 at 2021-12-06 18:45:17 +0530
+Processing by SsoController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  Rendering sso/index.html.erb within layouts/application
+  Rendered sso/index.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 24ms (Views: 19.7ms | ActiveRecord: 0.3ms)
+
+
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "tokens"[0m
+  [1m[36mToken Load (0.3ms)[0m  [1m[34mSELECT "tokens".* FROM "tokens"[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mToken Load (0.5ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Started GET "/?redirect_url=http://localhost:3001/" for ::1 at 2021-12-06 18:47:51 +0530
+Processing by SsoController#index as HTML
+  Parameters: {"redirect_url"=>"http://localhost:3001/"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  [1m[36mToken Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "tokens" WHERE "tokens"."token" = ? LIMIT ?[0m  [["token", "e3907c9d4bdfb1cd8efb2d5139037fc1"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:10
+  [1m[36mToken Load (0.3ms)[0m  [1m[34mSELECT "tokens".* FROM "tokens"[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/sso_controller.rb:12
+  [1m[36mToken Create (1.1ms)[0m  [1m[32mINSERT INTO "tokens" ("user_id", "token", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["token", "e3907c9d4bdfb1cd8efb2d5139037fc1"], ["created_at", "2021-12-06 13:18:45.524900"], ["updated_at", "2021-12-06 13:18:45.524900"]]
+  ↳ app/controllers/sso_controller.rb:12
+  [1m[35m (2.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/sso_controller.rb:12
+Redirected to http://localhost:3001/?token=e3907c9d4bdfb1cd8efb2d5139037fc1
+Completed 302 Found in 54081ms (ActiveRecord: 5.3ms)
+
+
+Started GET "/sso/verify_token?token=e3907c9d4bdfb1cd8efb2d5139037fc1" for 127.0.0.1 at 2021-12-06 18:48:45 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"e3907c9d4bdfb1cd8efb2d5139037fc1"}
+  [1m[36mToken Load (0.3ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "e3907c9d4bdfb1cd8efb2d5139037fc1"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:22
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:26
+Completed 200 OK in 8ms (Views: 0.3ms | ActiveRecord: 0.7ms)
+
+
+  [1m[36mToken Load (0.3ms)[0m  [1m[34mSELECT "tokens".* FROM "tokens"[0m
+Started OPTIONS "/?redirect_url=http://localhost:3001/home/logout" for ::1 at 2021-12-06 18:56:02 +0530
+  
+ActionController::RoutingError (No route matches [OPTIONS] "/"):
+  
+actionpack (5.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.6) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.6) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.6) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.6) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+railties (5.2.6) lib/rails/engine.rb:524:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/?redirect_url=http://localhost:3001/home/logout" for ::1 at 2021-12-06 18:56:02 +0530
+Processing by SsoController#index as HTML
+  Parameters: {"redirect_url"=>"http://localhost:3001/home/logout"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  [1m[36mToken Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "tokens" WHERE "tokens"."token" = ? LIMIT ?[0m  [["token", "bb5af76e3c42beff7789618a8a81c3b8"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:10
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/sso_controller.rb:12
+  [1m[36mToken Create (2.7ms)[0m  [1m[32mINSERT INTO "tokens" ("user_id", "token", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["token", "bb5af76e3c42beff7789618a8a81c3b8"], ["created_at", "2021-12-06 13:28:19.873922"], ["updated_at", "2021-12-06 13:28:19.873922"]]
+  ↳ app/controllers/sso_controller.rb:12
+  [1m[35m (2.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/sso_controller.rb:12
+Redirected to http://localhost:3001/home/logout?token=bb5af76e3c42beff7789618a8a81c3b8
+Completed 302 Found in 137183ms (ActiveRecord: 7.9ms)
+
+
+Started GET "/sso/verify_token?token=bb5af76e3c42beff7789618a8a81c3b8" for 127.0.0.1 at 2021-12-06 18:58:19 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"bb5af76e3c42beff7789618a8a81c3b8"}
+  [1m[36mToken Load (0.3ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "bb5af76e3c42beff7789618a8a81c3b8"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:22
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:26
+Completed 200 OK in 6ms (Views: 0.3ms | ActiveRecord: 0.6ms)
+
+
+  [1m[36mToken Load (0.3ms)[0m  [1m[34mSELECT "tokens".* FROM "tokens"[0m
+Started GET "/" for ::1 at 2021-12-06 18:59:15 +0530
+Processing by SsoController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  Rendering sso/index.html.erb within layouts/application
+  Rendered sso/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 36ms (Views: 29.9ms | ActiveRecord: 0.4ms)
+
+
+Started OPTIONS "/?redirect_url=http://localhost:3001/" for ::1 at 2021-12-06 18:59:21 +0530
+  
+ActionController::RoutingError (No route matches [OPTIONS] "/"):
+  
+actionpack (5.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.6) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.6) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.6) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.6) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+railties (5.2.6) lib/rails/engine.rb:524:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/?redirect_url=http://localhost:3001/" for ::1 at 2021-12-06 18:59:21 +0530
+Processing by SsoController#index as HTML
+  Parameters: {"redirect_url"=>"http://localhost:3001/"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  [1m[36mToken Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "tokens" WHERE "tokens"."token" = ? LIMIT ?[0m  [["token", "fe4df5ab6ad96b7e593d08e7c3eb839e"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:10
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/sso_controller.rb:12
+  [1m[36mToken Create (0.4ms)[0m  [1m[32mINSERT INTO "tokens" ("user_id", "token", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["token", "fe4df5ab6ad96b7e593d08e7c3eb839e"], ["created_at", "2021-12-06 13:29:27.527587"], ["updated_at", "2021-12-06 13:29:27.527587"]]
+  ↳ app/controllers/sso_controller.rb:12
+  [1m[35m (3.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/sso_controller.rb:12
+Redirected to http://localhost:3001/?token=fe4df5ab6ad96b7e593d08e7c3eb839e
+Completed 302 Found in 6000ms (ActiveRecord: 5.2ms)
+
+
+Started GET "/sso/verify_token?token=fe4df5ab6ad96b7e593d08e7c3eb839e" for 127.0.0.1 at 2021-12-06 18:59:27 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"fe4df5ab6ad96b7e593d08e7c3eb839e"}
+  [1m[36mToken Load (0.3ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "fe4df5ab6ad96b7e593d08e7c3eb839e"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:22
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:26
+Completed 200 OK in 6ms (Views: 0.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/?redirect_url=http://localhost:3002/" for ::1 at 2021-12-06 19:01:00 +0530
+Processing by SsoController#index as HTML
+  Parameters: {"redirect_url"=>"http://localhost:3002/"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  [1m[36mToken Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "tokens" WHERE "tokens"."token" = ? LIMIT ?[0m  [["token", "e0f6da3c691e475ff0f3ec63dac0691c"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:10
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/sso_controller.rb:12
+  [1m[36mToken Create (1.7ms)[0m  [1m[32mINSERT INTO "tokens" ("user_id", "token", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["token", "e0f6da3c691e475ff0f3ec63dac0691c"], ["created_at", "2021-12-06 13:31:05.488278"], ["updated_at", "2021-12-06 13:31:05.488278"]]
+  ↳ app/controllers/sso_controller.rb:12
+  [1m[35m (2.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/sso_controller.rb:12
+Redirected to http://localhost:3002/?token=e0f6da3c691e475ff0f3ec63dac0691c
+Completed 302 Found in 5356ms (ActiveRecord: 5.0ms)
+
+
+  [1m[36mToken Load (0.3ms)[0m  [1m[34mSELECT "tokens".* FROM "tokens"[0m
+Started GET "/sso/verify_token?token=e0f6da3c691e475ff0f3ec63dac0691c" for 127.0.0.1 at 2021-12-06 19:01:40 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"e0f6da3c691e475ff0f3ec63dac0691c"}
+  [1m[36mToken Load (0.7ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "e0f6da3c691e475ff0f3ec63dac0691c"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:22
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:26
+Completed 200 OK in 6ms (Views: 0.3ms | ActiveRecord: 0.9ms)
+
+
+  [1m[36mToken Load (0.1ms)[0m  [1m[34mSELECT "tokens".* FROM "tokens"[0m
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT "tokens".* FROM "tokens"[0m
+Started DELETE "/users/sign_out" for ::1 at 2021-12-06 19:02:26 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"jMy3jjBTWk8KJnKJx8XCtWzSR1c8NcGtPn2ohNshmh2YuN+y0zcTcRB+iA2vbh6Zrs+bSv+yIS3ord3q0vI06A=="}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Redirected to http://localhost:3000/
+Completed 302 Found in 12ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/" for ::1 at 2021-12-06 19:02:26 +0530
+Processing by SsoController#index as HTML
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2021-12-06 19:02:26 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /usr/share/rvm/gems/ruby-2.4.5@client/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client/gems/devise-4.8.0/app/views/devise/shared/_links.html.erb (1.5ms)
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application (7.3ms)
+Completed 200 OK in 33ms (Views: 30.5ms | ActiveRecord: 0.0ms)
+
+
+  [1m[36mToken Load (0.3ms)[0m  [1m[34mSELECT "tokens".* FROM "tokens"[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mToken Load (0.6ms)[0m  [1m[34mSELECT "tokens".* FROM "tokens"[0m
+  [1m[36mToken Load (0.3ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" ORDER BY "tokens"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Started GET "/" for ::1 at 2021-12-07 13:10:34 +0530
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Processing by SsoController#index as HTML
+Completed 401 Unauthorized in 6ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2021-12-07 13:10:34 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /usr/share/rvm/gems/ruby-2.4.5@client/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client/gems/devise-4.8.0/app/views/devise/shared/_links.html.erb (1.0ms)
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application (8.9ms)
+Completed 200 OK in 176ms (Views: 162.7ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/?redirect_url=http://localhost:3001/" for ::1 at 2021-12-07 13:10:47 +0530
+Processing by SsoController#index as HTML
+  Parameters: {"redirect_url"=>"http://localhost:3001/"}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2021-12-07 13:10:47 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /usr/share/rvm/gems/ruby-2.4.5@client/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client/gems/devise-4.8.0/app/views/devise/shared/_links.html.erb (1.0ms)
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application (4.9ms)
+Completed 200 OK in 50ms (Views: 27.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for ::1 at 2021-12-07 13:11:02 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"iAHoe2rtWnhEMW2Exhkz57JqryJcYJ2WXJ9CmXfkgt0GJOGBkJhHcNPjGgofud5OUln/SQyNlIHXthNlLNdaDg==", "user"=>{"email"=>"santattech@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Redirected to http://localhost:3000/?redirect_url=http://localhost:3001/
+Completed 302 Found in 108ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/?redirect_url=http://localhost:3001/" for ::1 at 2021-12-07 13:11:03 +0530
+Processing by SsoController#index as HTML
+  Parameters: {"redirect_url"=>"http://localhost:3001/"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  [1m[36mToken Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "tokens" WHERE "tokens"."token" = ? LIMIT ?[0m  [["token", "d8fe6a1e63eded41ca7928b7b2a4bc40"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:10
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/sso_controller.rb:12
+  [1m[36mToken Create (0.8ms)[0m  [1m[32mINSERT INTO "tokens" ("user_id", "token", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["token", "d8fe6a1e63eded41ca7928b7b2a4bc40"], ["created_at", "2021-12-07 07:41:08.437408"], ["updated_at", "2021-12-07 07:41:08.437408"]]
+  ↳ app/controllers/sso_controller.rb:12
+  [1m[35m (2.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/sso_controller.rb:12
+Redirected to http://localhost:3001/?token=d8fe6a1e63eded41ca7928b7b2a4bc40
+Completed 302 Found in 5433ms (ActiveRecord: 5.3ms)
+
+
+Started GET "/sso/verify_token?token=d8fe6a1e63eded41ca7928b7b2a4bc40" for 127.0.0.1 at 2021-12-07 13:11:08 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"d8fe6a1e63eded41ca7928b7b2a4bc40"}
+  [1m[36mToken Load (0.3ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "d8fe6a1e63eded41ca7928b7b2a4bc40"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:22
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:26
+Completed 200 OK in 6ms (Views: 0.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2021-12-07 13:11:36 +0530
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Redirected to http://localhost:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/" for ::1 at 2021-12-07 13:11:36 +0530
+Processing by SsoController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  Rendering sso/index.html.erb within layouts/application
+  Rendered sso/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 21ms (Views: 18.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/" for ::1 at 2021-12-07 13:14:31 +0530
+Processing by SsoController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  Rendering sso/index.html.erb within layouts/application
+  Rendered sso/index.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 20ms (Views: 17.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for ::1 at 2021-12-07 13:14:33 +0530
+Processing by SsoController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  Rendering sso/index.html.erb within layouts/application
+  Rendered sso/index.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 20ms (Views: 17.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for ::1 at 2021-12-07 13:14:43 +0530
+Processing by SsoController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  Rendering sso/index.html.erb within layouts/application
+  Rendered sso/index.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 15ms (Views: 12.0ms | ActiveRecord: 0.1ms)
+
+
+Started DELETE "/users/sign_out" for ::1 at 2021-12-07 13:14:52 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"rg0W+K2rjVHiKXKS/jH0KcoLVjvWcUOfa0lmy4n3KHK3XeeiUD0c7kzhRkpWIoUFQS29oDQy5LIBtsSkTKEMrQ=="}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Redirected to http://localhost:3000/
+Completed 302 Found in 13ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/" for ::1 at 2021-12-07 13:14:52 +0530
+Processing by SsoController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2021-12-07 13:14:52 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /usr/share/rvm/gems/ruby-2.4.5@client/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client/gems/devise-4.8.0/app/views/devise/shared/_links.html.erb (0.6ms)
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 13ms (Views: 12.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for ::1 at 2021-12-07 13:15:17 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"+prKn9+X855x/4Apxb0uPDOgt6kR6FKgg/Cb42BinCxH8YKk6jPrcNV32bnOHfgRaGRX4OUO0vTNto6W2iY/JA==", "user"=>{"email"=>"santattech@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Redirected to http://localhost:3000/
+Completed 302 Found in 109ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/" for ::1 at 2021-12-07 13:15:18 +0530
+Processing by SsoController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  Rendering sso/index.html.erb within layouts/application
+  Rendered sso/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 13ms (Views: 10.4ms | ActiveRecord: 0.2ms)
+
+
+Started DELETE "/users/sign_out" for ::1 at 2021-12-07 13:16:26 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"Mg93j3HqqDB1nr6JP1Glv7zDY/h9mV/h7y3iQi7KY/xX0qysRIsCf12Jsg9uUwD+Jj342R+EeLCIzjiGPlajxw=="}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Redirected to http://localhost:3000/
+Completed 302 Found in 7ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/" for ::1 at 2021-12-07 13:16:26 +0530
+Processing by SsoController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2021-12-07 13:16:26 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /usr/share/rvm/gems/ruby-2.4.5@client/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client/gems/devise-4.8.0/app/views/devise/shared/_links.html.erb (0.9ms)
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application (4.4ms)
+Completed 200 OK in 20ms (Views: 18.2ms | ActiveRecord: 0.0ms)
+
+
+Started OPTIONS "/?redirect_url=http://localhost:3001/" for ::1 at 2021-12-07 13:16:29 +0530
+  
+ActionController::RoutingError (No route matches [OPTIONS] "/"):
+  
+actionpack (5.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.6) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.6) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.6) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.6) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+railties (5.2.6) lib/rails/engine.rb:524:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/?redirect_url=http://localhost:3001/" for ::1 at 2021-12-07 13:16:29 +0530
+Processing by SsoController#index as HTML
+  Parameters: {"redirect_url"=>"http://localhost:3001/"}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2021-12-07 13:16:29 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /usr/share/rvm/gems/ruby-2.4.5@client/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client/gems/devise-4.8.0/app/views/devise/shared/_links.html.erb (0.7ms)
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 15ms (Views: 13.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2021-12-07 13:22:29 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /usr/share/rvm/gems/ruby-2.4.5@client/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client/gems/devise-4.8.0/app/views/devise/shared/_links.html.erb (0.8ms)
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 17ms (Views: 14.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2021-12-07 13:22:55 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /usr/share/rvm/gems/ruby-2.4.5@client/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client/gems/devise-4.8.0/app/views/devise/shared/_links.html.erb (0.7ms)
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 21ms (Views: 19.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/?redirect_url=http://localhost:3001/" for ::1 at 2021-12-07 13:23:00 +0530
+Processing by SsoController#index as HTML
+  Parameters: {"redirect_url"=>"http://localhost:3001/"}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2021-12-07 13:23:00 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /usr/share/rvm/gems/ruby-2.4.5@client/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client/gems/devise-4.8.0/app/views/devise/shared/_links.html.erb (0.8ms)
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 20ms (Views: 19.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for ::1 at 2021-12-07 13:23:08 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"0GvAWFx3NFfof+xh3AsP60H9D/ARh6C5ErVM7ZO1FsKb1MARzvP5i5ua2U3A12IYu+fDH/m/Jz5VMxIFmYXqtw==", "user"=>{"email"=>"santattech@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Redirected to http://localhost:3000/?redirect_url=http://localhost:3001/
+Completed 302 Found in 107ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/?redirect_url=http://localhost:3001/" for ::1 at 2021-12-07 13:23:08 +0530
+Processing by SsoController#index as HTML
+  Parameters: {"redirect_url"=>"http://localhost:3001/"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  [1m[36mToken Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "tokens" WHERE "tokens"."token" = ? LIMIT ?[0m  [["token", "3cea623f495ba64002453a5bfe124545"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:10
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/sso_controller.rb:12
+  [1m[36mToken Create (0.3ms)[0m  [1m[32mINSERT INTO "tokens" ("user_id", "token", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["token", "3cea623f495ba64002453a5bfe124545"], ["created_at", "2021-12-07 07:53:08.358500"], ["updated_at", "2021-12-07 07:53:08.358500"]]
+  ↳ app/controllers/sso_controller.rb:12
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/sso_controller.rb:12
+Redirected to http://localhost:3001/?token=3cea623f495ba64002453a5bfe124545
+Completed 302 Found in 22ms (ActiveRecord: 3.1ms)
+
+
+Started GET "/sso/verify_token?token=3cea623f495ba64002453a5bfe124545" for 127.0.0.1 at 2021-12-07 13:23:08 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"3cea623f495ba64002453a5bfe124545"}
+  [1m[36mToken Load (0.3ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "3cea623f495ba64002453a5bfe124545"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:22
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:26
+Completed 200 OK in 6ms (Views: 0.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for ::1 at 2021-12-07 16:59:23 +0530
+Processing by SsoController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  Rendering sso/index.html.erb within layouts/application
+  Rendered sso/index.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 19ms (Views: 16.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2021-12-11 05:53:04 +0530
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client1/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Processing by SsoController#index as HTML
+Completed 401 Unauthorized in 11ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2021-12-11 05:53:04 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/shared/_links.html.erb (2.5ms)
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application (23.3ms)
+Completed 200 OK in 411ms (Views: 395.3ms | ActiveRecord: 0.9ms)
+
+
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+Started POST "/users/sign_in" for 127.0.0.1 at 2021-12-11 05:54:34 +0530
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client1/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"mydpacY1FNXmucx0scZaAmKCwZsbw0JZ/ks5SiHLvL015ddFAGyctO6HMH60tlmIpdV64Tfgni30+Abk4mr/GQ==", "user"=>{"email"=>"santattech@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client1/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Redirected to http://localhost:3000/
+Completed 302 Found in 210ms (ActiveRecord: 1.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2021-12-11 05:54:35 +0530
+Processing by SsoController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client1/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  Rendering sso/index.html.erb within layouts/application
+  Rendered sso/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 305ms (Views: 299.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2021-12-11 05:54:51 +0530
+Processing by SsoController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2021-12-11 05:54:51 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/shared/_links.html.erb (1.8ms)
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application (12.9ms)
+Completed 200 OK in 36ms (Views: 32.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2021-12-11 05:54:57 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"5VenBAq7HNg3kwAtbWL98KiE7DMJlLnPHxH7C/Jo4hTLVTBQeOb8nCohIKF9704rniRbg2pxzpFSCafr5QvZbQ==", "user"=>{"email"=>"santattech@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"1"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client1/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client1/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Update (1.0ms)[0m  [1m[33mUPDATE "users" SET "remember_created_at" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["remember_created_at", "2021-12-11 00:24:57.385429"], ["updated_at", "2021-12-11 00:24:57.387127"], ["id", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client1/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  [1m[35m (2.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client1/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Redirected to http://localhost:3000/
+Completed 302 Found in 192ms (ActiveRecord: 3.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2021-12-11 05:54:57 +0530
+Processing by SsoController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client1/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  Rendering sso/index.html.erb within layouts/application
+  Rendered sso/index.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 24ms (Views: 20.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2021-12-11 05:55:10 +0530
+Processing by SsoController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client1/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  Rendering sso/index.html.erb within layouts/application
+  Rendered sso/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 28ms (Views: 22.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/authenticate" for 127.0.0.1 at 2021-12-11 06:14:35 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/authenticate"):
+  
+actionpack (5.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.6) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.6) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.6) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.6) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+railties (5.2.6) lib/rails/engine.rb:524:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/authenticate" for 127.0.0.1 at 2021-12-11 06:15:34 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/authenticate"):
+  
+actionpack (5.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.6) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.6) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.6) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.6) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+railties (5.2.6) lib/rails/engine.rb:524:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/authenticate" for 127.0.0.1 at 2021-12-11 06:17:42 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/authenticate"):
+  
+actionpack (5.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.6) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.6) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.6) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.6) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+railties (5.2.6) lib/rails/engine.rb:524:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/sso/authenticate" for 127.0.0.1 at 2021-12-11 06:18:06 +0530
+Processing by SsoController#authenticate as */*
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2021-12-11 06:18:06 +0530
+Processing by Devise::SessionsController#new as */*
+  Rendering /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/shared/_links.html.erb (3.8ms)
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application (11.3ms)
+Completed 200 OK in 57ms (Views: 42.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/sso/authenticate" for 127.0.0.1 at 2021-12-11 06:18:38 +0530
+Processing by SsoController#authenticate as */*
+Started GET "/sso/authenticate" for 127.0.0.1 at 2021-12-11 06:19:38 +0530
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  [1m[35m (3.0ms)[0m  [1m[35mALTER TABLE "tokens" ADD "app_id" varchar[0m
+No template found for SsoController#authenticate, rendering head :no_content
+Completed 204 No Content in 764685ms (ActiveRecord: 0.0ms)
+
+
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client1/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Processing by SsoController#authenticate as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", ""], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:35
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 1.3ms)
+
+
+  
+NoMethodError (undefined method `valid_password?' for nil:NilClass):
+  
+app/controllers/sso_controller.rb:37:in `authenticate'
+Started GET "/sso/authenticate?username=santattech%40gmail.com&password=[FILTERED]&app_id=100" for 127.0.0.1 at 2021-12-11 06:32:12 +0530
+Processing by SsoController#authenticate as */*
+  Parameters: {"username"=>"santattech@gmail.com", "password"=>"[FILTERED]", "app_id"=>"100"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:35
+  [1m[36mToken Load (0.8ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."user_id" = ? AND "tokens"."app_id" = ? LIMIT ?[0m  [["user_id", 1], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:39
+Completed 500 Internal Server Error in 206ms (ActiveRecord: 3.0ms)
+
+
+  
+NoMethodError (undefined method `token' for nil:NilClass):
+  
+app/controllers/sso_controller.rb:40:in `authenticate'
+Started GET "/sso/authenticate?username=santattech%40gmail.com&password=[FILTERED]&app_id=100" for 127.0.0.1 at 2021-12-11 06:32:51 +0530
+Processing by SsoController#authenticate as */*
+  Parameters: {"username"=>"santattech@gmail.com", "password"=>"[FILTERED]", "app_id"=>"100"}
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:35
+  [1m[36mToken Load (0.4ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."user_id" = ? AND "tokens"."app_id" = ? LIMIT ?[0m  [["user_id", 1], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:39
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/sso_controller.rb:41
+  [1m[36mToken Create (2.3ms)[0m  [1m[32mINSERT INTO "tokens" ("user_id", "token", "created_at", "updated_at", "app_id") VALUES (?, ?, ?, ?, ?)[0m  [["user_id", 1], ["token", "0e1dc97c167b804c0dd7a5e02bd853d2"], ["created_at", "2021-12-11 01:02:52.017824"], ["updated_at", "2021-12-11 01:02:52.017824"], ["app_id", "100"]]
+  ↳ app/controllers/sso_controller.rb:41
+  [1m[35m (3.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/sso_controller.rb:41
+Completed 200 OK in 214ms (Views: 1.2ms | ActiveRecord: 9.5ms)
+
+
+Started GET "/sso/authenticate?username=santattech%40gmail.com&password=[FILTERED]&app_id=100" for 127.0.0.1 at 2021-12-11 06:34:20 +0530
+Processing by SsoController#authenticate as */*
+  Parameters: {"username"=>"santattech@gmail.com", "password"=>"[FILTERED]", "app_id"=>"100"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:35
+  [1m[36mToken Load (0.3ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."user_id" = ? AND "tokens"."app_id" = ? LIMIT ?[0m  [["user_id", 1], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:39
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/sso_controller.rb:41
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/sso_controller.rb:41
+Completed 200 OK in 8221ms (Views: 0.5ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/sso/authenticate?username=santattech%40gmail.com&password=[FILTERED]&app_id=100" for 127.0.0.1 at 2021-12-11 06:35:27 +0530
+Processing by SsoController#authenticate as */*
+  Parameters: {"username"=>"santattech@gmail.com", "password"=>"[FILTERED]", "app_id"=>"100"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:35
+  [1m[36mToken Load (0.4ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."user_id" = ? AND "tokens"."app_id" = ? LIMIT ?[0m  [["user_id", 1], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:39
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/sso_controller.rb:41
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/sso_controller.rb:41
+Completed 200 OK in 190ms (Views: 0.5ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/sso/authenticate?username=santattech%40gmail.com&password=[FILTERED]&app_id=100" for 127.0.0.1 at 2021-12-11 06:36:01 +0530
+Processing by SsoController#authenticate as */*
+  Parameters: {"username"=>"santattech@gmail.com", "password"=>"[FILTERED]", "app_id"=>"100"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:35
+  [1m[36mToken Load (0.4ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."user_id" = ? AND "tokens"."app_id" = ? LIMIT ?[0m  [["user_id", 1], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:39
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/sso_controller.rb:41
+  [1m[35m (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/sso_controller.rb:41
+Completed 200 OK in 175ms (Views: 0.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/sso/authenticate?username=santattech%40gmail.com&password=[FILTERED]&app_id=100" for 127.0.0.1 at 2021-12-11 06:36:12 +0530
+Processing by SsoController#authenticate as */*
+  Parameters: {"username"=>"santattech@gmail.com", "password"=>"[FILTERED]", "app_id"=>"100"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:35
+  [1m[36mToken Load (0.3ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."user_id" = ? AND "tokens"."app_id" = ? LIMIT ?[0m  [["user_id", 1], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:39
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/sso_controller.rb:41
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/sso_controller.rb:41
+Completed 200 OK in 173ms (Views: 0.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/sso/authenticate?username=santattech%40gmail.com&password=[FILTERED]&app_id=100" for 127.0.0.1 at 2021-12-11 06:36:24 +0530
+Processing by SsoController#authenticate as */*
+  Parameters: {"username"=>"santattech@gmail.com", "password"=>"[FILTERED]", "app_id"=>"100"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:35
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."user_id" = ? AND "tokens"."app_id" = ? LIMIT ?[0m  [["user_id", 1], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:39
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/sso_controller.rb:41
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/sso_controller.rb:41
+Completed 200 OK in 167ms (Views: 0.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/sso/authenticate?username=santattech%40gmail.com&password=[FILTERED]&app_id=100" for 127.0.0.1 at 2021-12-11 06:36:25 +0530
+Processing by SsoController#authenticate as */*
+  Parameters: {"username"=>"santattech@gmail.com", "password"=>"[FILTERED]", "app_id"=>"100"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:35
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."user_id" = ? AND "tokens"."app_id" = ? LIMIT ?[0m  [["user_id", 1], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:39
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/sso_controller.rb:41
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/sso_controller.rb:41
+Completed 200 OK in 167ms (Views: 0.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/?redirect_url=http://localhost:3001/dashboard" for 127.0.0.1 at 2021-12-11 06:41:02 +0530
+Processing by SsoController#index as */*
+  Parameters: {"redirect_url"=>"http://localhost:3001/dashboard"}
+Completed 401 Unauthorized in 12ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2021-12-11 06:41:02 +0530
+Processing by Devise::SessionsController#new as */*
+  Rendering /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/shared/_links.html.erb (1.9ms)
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application (8.6ms)
+Completed 200 OK in 43ms (Views: 40.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/?redirect_url=http://localhost:3001/dashboard" for 127.0.0.1 at 2021-12-11 06:41:15 +0530
+Processing by SsoController#index as */*
+  Parameters: {"redirect_url"=>"http://localhost:3001/dashboard"}
+  [1m[36mToken Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "tokens" WHERE "tokens"."token" = ? LIMIT ?[0m  [["token", "c0b3df5e9b7249309c55c172bd5d5c1c"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:10
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/sso_controller.rb:12
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/sso_controller.rb:12
+Redirected to http://localhost:3001/dashboard?token=c0b3df5e9b7249309c55c172bd5d5c1c
+Completed 302 Found in 21ms (ActiveRecord: 1.6ms)
+
+
+Started GET "/sso/verify_token?token=c0b3df5e9b7249309c55c172bd5d5c1c" for 127.0.0.1 at 2021-12-11 06:41:15 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"c0b3df5e9b7249309c55c172bd5d5c1c"}
+  [1m[36mToken Load (0.5ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "c0b3df5e9b7249309c55c172bd5d5c1c"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:22
+Completed 200 OK in 4ms (Views: 0.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/?redirect_url=http://localhost:3001/dashboard" for 127.0.0.1 at 2021-12-11 06:41:31 +0530
+Processing by SsoController#index as */*
+  Parameters: {"redirect_url"=>"http://localhost:3001/dashboard"}
+Completed 401 Unauthorized in 5ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2021-12-11 06:41:31 +0530
+Processing by Devise::SessionsController#new as */*
+  Rendering /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/shared/_links.html.erb (1.9ms)
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application (7.7ms)
+Completed 200 OK in 50ms (Views: 35.4ms | ActiveRecord: 1.1ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2021-12-11 06:45:36 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"LtVAtjiMkGczRR1/QMkfVi9Da88RXcdAqF+1NG9m1gtU65eYmNVhBze+axW2Lz6qaYRvFIMywiE00x0zXcJjYA=="}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client1/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client1/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Update (1.9ms)[0m  [1m[33mUPDATE "users" SET "remember_created_at" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["remember_created_at", nil], ["updated_at", "2021-12-11 01:15:36.425634"], ["id", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client1/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  [1m[35m (2.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client1/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Redirected to http://localhost:3000/
+Completed 302 Found in 20ms (ActiveRecord: 4.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2021-12-11 06:45:36 +0530
+Processing by SsoController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2021-12-11 06:45:36 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/shared/_links.html.erb (1.6ms)
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application (7.9ms)
+Completed 200 OK in 38ms (Views: 35.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/sso/verify_token?token=0e1dc97c167b804c0dd7a5e02bd853d2&app_id=100" for 127.0.0.1 at 2021-12-11 06:49:07 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"0e1dc97c167b804c0dd7a5e02bd853d2", "app_id"=>"100"}
+  [1m[36mToken Load (0.4ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "0e1dc97c167b804c0dd7a5e02bd853d2"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:22
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:26
+Completed 200 OK in 49ms (Views: 0.4ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/sso/verify_token?token=0e1dc97c167b804c0dd7a5e02bd853d2&app_id=100" for 127.0.0.1 at 2021-12-11 06:51:34 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"0e1dc97c167b804c0dd7a5e02bd853d2", "app_id"=>"100"}
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "0e1dc97c167b804c0dd7a5e02bd853d2"], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:22
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:26
+Completed 200 OK in 28ms (Views: 0.4ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/sso/verify_token?token=0e1dc97c167b804c0dd7a5e02bd853d2&app_id=100" for 127.0.0.1 at 2021-12-11 06:51:38 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"0e1dc97c167b804c0dd7a5e02bd853d2", "app_id"=>"100"}
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "0e1dc97c167b804c0dd7a5e02bd853d2"], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:22
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:26
+Completed 200 OK in 6ms (Views: 0.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/sso/verify_token?token=10e1dc97c167b804c0dd7a5e02bd853d2&app_id=100" for 127.0.0.1 at 2021-12-11 06:51:49 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"10e1dc97c167b804c0dd7a5e02bd853d2", "app_id"=>"100"}
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "10e1dc97c167b804c0dd7a5e02bd853d2"], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:22
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/sso/verify_token?token=0e1dc97c167b804c0dd7a5e02bd853d2&app_id=100" for 127.0.0.1 at 2021-12-11 06:51:53 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"0e1dc97c167b804c0dd7a5e02bd853d2", "app_id"=>"100"}
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "0e1dc97c167b804c0dd7a5e02bd853d2"], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:22
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:26
+Completed 200 OK in 6ms (Views: 0.4ms | ActiveRecord: 0.4ms)
+
+
+  [1m[35m (3.7ms)[0m  [1m[35mALTER TABLE "users" ADD "app_ids" text[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Update (0.5ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = ? WHERE "users"."id" = ?[0m  [["updated_at", "2021-12-11 01:26:38.018549"], ["id", 1]]
+  [1m[35m (2.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = ? WHERE "users"."id" = ?[0m  [["updated_at", "2021-12-11 01:27:14.287046"], ["id", 1]]
+  [1m[35m (2.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = ? WHERE "users"."id" = ?[0m  [["updated_at", "2021-12-11 01:27:33.517601"], ["id", 1]]
+  [1m[35m (2.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Update (0.7ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = ?, "app_ids" = ? WHERE "users"."id" = ?[0m  [["updated_at", "2021-12-11 01:28:02.526458"], ["app_ids", "100"], ["id", 1]]
+  [1m[35m (2.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Update (0.4ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = ?, "app_ids" = ? WHERE "users"."id" = ?[0m  [["updated_at", "2021-12-11 01:28:18.508654"], ["app_ids", "100, 200"], ["id", 1]]
+  [1m[35m (2.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Update (0.9ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = ?, "app_ids" = ? WHERE "users"."id" = ?[0m  [["updated_at", "2021-12-11 01:28:29.622402"], ["app_ids", "[\"100\", \"200\"]"], ["id", 1]]
+  [1m[35m (2.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = ?, "app_ids" = ? WHERE "users"."id" = ?[0m  [["updated_at", "2021-12-11 01:28:55.621660"], ["app_ids", "100, 200"], ["id", 1]]
+  [1m[35m (2.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:11
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:11
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:11
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:11
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:11
+Started GET "/sso/verify_token?token=342342&app_id=100" for 127.0.0.1 at 2021-12-11 07:07:17 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"342342", "app_id"=>"100"}
+  [1m[36mToken Load (0.5ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "342342"], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:22
+Completed 200 OK in 10ms (Views: 0.6ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/sso/verify_token?token=0e1dc97c167b804c0dd7a5e02bd853d2&app_id=100" for 127.0.0.1 at 2021-12-11 07:07:46 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"0e1dc97c167b804c0dd7a5e02bd853d2", "app_id"=>"100"}
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "0e1dc97c167b804c0dd7a5e02bd853d2"], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:22
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:26
+Completed 200 OK in 27ms (Views: 0.4ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/sso/verify_token?token=0e1dc97c167b804c0dd7a5e02bd853d2&app_id=100" for 127.0.0.1 at 2021-12-11 07:08:14 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"0e1dc97c167b804c0dd7a5e02bd853d2", "app_id"=>"100"}
+  [1m[36mToken Load (0.3ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "0e1dc97c167b804c0dd7a5e02bd853d2"], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:22
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:26
+Completed 200 OK in 6ms (Views: 0.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/sso/destroy_token?token=0e1dc97c167b804c0dd7a5e02bd853d2&app_id=100" for 127.0.0.1 at 2021-12-11 07:08:14 +0530
+Processing by SsoController#destroy_token as */*
+  Parameters: {"token"=>"0e1dc97c167b804c0dd7a5e02bd853d2", "app_id"=>"100"}
+Completed 401 Unauthorized in 12ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2021-12-11 07:08:14 +0530
+Processing by Devise::SessionsController#new as */*
+  Rendering /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/shared/_links.html.erb (1.8ms)
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application (7.6ms)
+Completed 200 OK in 42ms (Views: 38.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/sso/verify_token?token=0e1dc97c167b804c0dd7a5e02bd853d2&app_id=100" for 127.0.0.1 at 2021-12-11 07:08:59 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"0e1dc97c167b804c0dd7a5e02bd853d2", "app_id"=>"100"}
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "0e1dc97c167b804c0dd7a5e02bd853d2"], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:22
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:26
+Completed 200 OK in 29ms (Views: 0.5ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/sso/destroy_token?token=0e1dc97c167b804c0dd7a5e02bd853d2&app_id=100" for 127.0.0.1 at 2021-12-11 07:08:59 +0530
+Processing by SsoController#destroy_token as */*
+  Parameters: {"token"=>"0e1dc97c167b804c0dd7a5e02bd853d2", "app_id"=>"100"}
+  [1m[36mToken Load (0.4ms)[0m  [1m[34mSELECT "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ?[0m  [["token", "0e1dc97c167b804c0dd7a5e02bd853d2"], ["app_id", "100"]]
+  ↳ app/controllers/sso_controller.rb:51
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/sso_controller.rb:51
+  [1m[36mToken Destroy (0.6ms)[0m  [1m[31mDELETE FROM "tokens" WHERE "tokens"."id" = ?[0m  [["id", 8]]
+  ↳ app/controllers/sso_controller.rb:51
+  [1m[35m (2.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/sso_controller.rb:51
+Completed 200 OK in 12ms (Views: 0.4ms | ActiveRecord: 3.4ms)
+
+
+  [1m[36mToken Load (0.7ms)[0m  [1m[34mSELECT "tokens".* FROM "tokens"[0m
+  [1m[36mToken Load (0.3ms)[0m  [1m[34mSELECT "tokens".* FROM "tokens"[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mToken Destroy (0.6ms)[0m  [1m[31mDELETE FROM "tokens" WHERE "tokens"."id" = ?[0m  [["id", 1]]
+  [1m[35m (2.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mToken Destroy (0.7ms)[0m  [1m[31mDELETE FROM "tokens" WHERE "tokens"."id" = ?[0m  [["id", 2]]
+  [1m[35m (2.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mToken Destroy (0.5ms)[0m  [1m[31mDELETE FROM "tokens" WHERE "tokens"."id" = ?[0m  [["id", 3]]
+  [1m[35m (2.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mToken Destroy (0.7ms)[0m  [1m[31mDELETE FROM "tokens" WHERE "tokens"."id" = ?[0m  [["id", 4]]
+  [1m[35m (2.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mToken Destroy (0.8ms)[0m  [1m[31mDELETE FROM "tokens" WHERE "tokens"."id" = ?[0m  [["id", 5]]
+  [1m[35m (2.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mToken Destroy (0.8ms)[0m  [1m[31mDELETE FROM "tokens" WHERE "tokens"."id" = ?[0m  [["id", 6]]
+  [1m[35m (2.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mToken Destroy (0.5ms)[0m  [1m[31mDELETE FROM "tokens" WHERE "tokens"."id" = ?[0m  [["id", 7]]
+  [1m[35m (2.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT "tokens".* FROM "tokens"[0m
+Started GET "/sso/authenticate?username=santattech%40gmail.com&password=[FILTERED]&app_id=100" for 127.0.0.1 at 2021-12-11 07:09:28 +0530
+Processing by SsoController#authenticate as */*
+  Parameters: {"username"=>"santattech@gmail.com", "password"=>"[FILTERED]", "app_id"=>"100"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:35
+  [1m[36mToken Load (0.3ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."user_id" = ? AND "tokens"."app_id" = ? LIMIT ?[0m  [["user_id", 1], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:39
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/sso_controller.rb:41
+  [1m[36mToken Create (1.9ms)[0m  [1m[32mINSERT INTO "tokens" ("user_id", "token", "created_at", "updated_at", "app_id") VALUES (?, ?, ?, ?, ?)[0m  [["user_id", 1], ["token", "3032ffc9f14e45a46f68cf4fabaa4bc1"], ["created_at", "2021-12-11 01:39:28.879437"], ["updated_at", "2021-12-11 01:39:28.879437"], ["app_id", "100"]]
+  ↳ app/controllers/sso_controller.rb:41
+  [1m[35m (2.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/sso_controller.rb:41
+Completed 200 OK in 185ms (Views: 0.4ms | ActiveRecord: 5.5ms)
+
+
+Started GET "/sso/verify_token?token=0e1dc97c167b804c0dd7a5e02bd853d2&app_id=100" for 127.0.0.1 at 2021-12-11 07:09:38 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"0e1dc97c167b804c0dd7a5e02bd853d2", "app_id"=>"100"}
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "0e1dc97c167b804c0dd7a5e02bd853d2"], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:22
+Completed 200 OK in 4ms (Views: 0.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/sso/verify_token?token=3032ffc9f14e45a46f68cf4fabaa4bc1&app_id=100" for 127.0.0.1 at 2021-12-11 07:09:42 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"3032ffc9f14e45a46f68cf4fabaa4bc1", "app_id"=>"100"}
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "3032ffc9f14e45a46f68cf4fabaa4bc1"], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:22
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:26
+Completed 200 OK in 7ms (Views: 0.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/sso/verify_token?token=3032ffc9f14e45a46f68cf4fabaa4bc1&app_id=100" for 127.0.0.1 at 2021-12-11 07:10:13 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"3032ffc9f14e45a46f68cf4fabaa4bc1", "app_id"=>"100"}
+  [1m[36mToken Load (0.3ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "3032ffc9f14e45a46f68cf4fabaa4bc1"], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:22
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:26
+Completed 200 OK in 6ms (Views: 0.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/sso/destroy_token?token=3032ffc9f14e45a46f68cf4fabaa4bc1&app_id=100" for 127.0.0.1 at 2021-12-11 07:10:13 +0530
+Processing by SsoController#destroy_token as */*
+  Parameters: {"token"=>"3032ffc9f14e45a46f68cf4fabaa4bc1", "app_id"=>"100"}
+  [1m[36mToken Load (0.5ms)[0m  [1m[34mSELECT "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ?[0m  [["token", "3032ffc9f14e45a46f68cf4fabaa4bc1"], ["app_id", "100"]]
+  ↳ app/controllers/sso_controller.rb:51
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/sso_controller.rb:51
+  [1m[36mToken Destroy (0.6ms)[0m  [1m[31mDELETE FROM "tokens" WHERE "tokens"."id" = ?[0m  [["id", 9]]
+  ↳ app/controllers/sso_controller.rb:51
+  [1m[35m (2.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/sso_controller.rb:51
+Completed 200 OK in 14ms (Views: 0.5ms | ActiveRecord: 3.7ms)
+
+
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT "tokens".* FROM "tokens"[0m
+Started GET "/users/sign_in" for 127.0.0.1 at 2021-12-11 07:13:19 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/shared/_links.html.erb (1.8ms)
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application (7.2ms)
+Completed 200 OK in 33ms (Views: 30.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2021-12-11 07:13:45 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ikhB5D2Nz/VJv6iVprOV6oCu1UPK/JJ3KSJNNbaz/8mhNAOasalwL3OhZEqpnOaVW+KliHJkU+O+o0pecd/v6A==", "user"=>{"email"=>"santattech@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client1/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Redirected to http://localhost:3000/
+Completed 302 Found in 169ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2021-12-11 07:13:45 +0530
+Processing by SsoController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client1/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  Rendering sso/index.html.erb within layouts/application
+  Rendered sso/index.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 29ms (Views: 25.1ms | ActiveRecord: 0.3ms)
+
+
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+Started GET "/sso/get_active_token" for 127.0.0.1 at 2021-12-11 07:21:45 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/sso/get_active_token"):
+  
+actionpack (5.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.6) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.6) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.6) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.6) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+railties (5.2.6) lib/rails/engine.rb:524:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/sso/get_active_token" for 127.0.0.1 at 2021-12-11 07:22:37 +0530
+Processing by SsoController#get_active_token as */*
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2021-12-11 07:22:37 +0530
+Processing by Devise::SessionsController#new as */*
+  Rendering /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/shared/_links.html.erb (2.3ms)
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application (30.2ms)
+Completed 200 OK in 70ms (Views: 54.1ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/sso/get_active_token" for 127.0.0.1 at 2021-12-11 07:24:23 +0530
+Processing by SsoController#get_active_token as */*
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2021-12-11 07:24:23 +0530
+Processing by Devise::SessionsController#new as */*
+  Rendering /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/shared/_links.html.erb (1.9ms)
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application (9.2ms)
+Completed 200 OK in 37ms (Views: 34.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/sso/get_active_token" for 127.0.0.1 at 2021-12-11 07:25:06 +0530
+Processing by SsoController#get_active_token as */*
+No template found for SsoController#get_active_token, rendering head :no_content
+Completed 204 No Content in 369615ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/sso/verify_token?token=3032ffc9f14e45a46f68cf4fabaa4bc1&app_id=100" for 127.0.0.1 at 2021-12-11 07:31:36 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"3032ffc9f14e45a46f68cf4fabaa4bc1", "app_id"=>"100"}
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "3032ffc9f14e45a46f68cf4fabaa4bc1"], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:13
+Completed 200 OK in 16ms (Views: 0.4ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/sso/verify_token?token=3032ffc9f14e45a46f68cf4fabaa4bc1&app_id=100" for 127.0.0.1 at 2021-12-11 07:31:43 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"3032ffc9f14e45a46f68cf4fabaa4bc1", "app_id"=>"100"}
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "3032ffc9f14e45a46f68cf4fabaa4bc1"], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:13
+Completed 200 OK in 4ms (Views: 0.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/sso/authenticate?username=santattech%40gmail.com&password=[FILTERED]&app_id=100" for 127.0.0.1 at 2021-12-11 07:31:51 +0530
+Processing by SsoController#authenticate as */*
+  Parameters: {"username"=>"santattech@gmail.com", "password"=>"[FILTERED]", "app_id"=>"100"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:24
+  [1m[36mToken Load (0.5ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."user_id" = ? AND "tokens"."app_id" = ? LIMIT ?[0m  [["user_id", 1], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:28
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/sso_controller.rb:30
+  [1m[36mToken Create (2.3ms)[0m  [1m[32mINSERT INTO "tokens" ("user_id", "token", "created_at", "updated_at", "app_id") VALUES (?, ?, ?, ?, ?)[0m  [["user_id", 1], ["token", "50f4139b46faa432930cba4a9b48e5b5"], ["created_at", "2021-12-11 02:01:51.278239"], ["updated_at", "2021-12-11 02:01:51.278239"], ["app_id", "100"]]
+  ↳ app/controllers/sso_controller.rb:30
+  [1m[35m (3.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/sso_controller.rb:30
+Completed 200 OK in 204ms (Views: 0.5ms | ActiveRecord: 7.6ms)
+
+
+Started GET "/sso/authenticate?username=santattech%40gmail.com&password=[FILTERED]&app_id=100" for 127.0.0.1 at 2021-12-11 07:32:50 +0530
+Processing by SsoController#authenticate as */*
+  Parameters: {"username"=>"santattech@gmail.com", "password"=>"[FILTERED]", "app_id"=>"100"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:24
+  [1m[36mToken Load (0.3ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."user_id" = ? AND "tokens"."app_id" = ? LIMIT ?[0m  [["user_id", 1], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:28
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/sso_controller.rb:30
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/sso_controller.rb:30
+Completed 200 OK in 198ms (Views: 0.4ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/sso/get_active_token" for 127.0.0.1 at 2021-12-11 07:33:36 +0530
+Processing by SsoController#get_active_token as */*
+No template found for SsoController#get_active_token, rendering head :no_content
+Completed 204 No Content in 26251ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/sso/get_active_token" for 127.0.0.1 at 2021-12-11 07:34:29 +0530
+Processing by SsoController#get_active_token as HTML
+Completed 406 Not Acceptable in 8806ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::UnknownFormat (SsoController#get_active_token is missing a template for this request format and variant.
+
+request.formats: ["text/html"]
+request.variant: []
+
+NOTE! For XHR/Ajax or API requests, this action would normally respond with 204 No Content: an empty white screen. Since you're loading it in a web browser, we assume that you expected to actually render a template, not nothing, so we're showing an error to be extra-clear. If you expect 204 No Content, carry on. That's what you'll get from an XHR or API request. Give it a shot.):
+  
+actionpack (5.2.6) lib/action_controller/metal/implicit_render.rb:55:in `default_render'
+actionpack (5.2.6) lib/action_controller/metal/basic_implicit_render.rb:6:in `block in send_action'
+actionpack (5.2.6) lib/action_controller/metal/basic_implicit_render.rb:6:in `tap'
+actionpack (5.2.6) lib/action_controller/metal/basic_implicit_render.rb:6:in `send_action'
+actionpack (5.2.6) lib/abstract_controller/base.rb:194:in `process_action'
+actionpack (5.2.6) lib/action_controller/metal/rendering.rb:30:in `process_action'
+actionpack (5.2.6) lib/abstract_controller/callbacks.rb:42:in `block in process_action'
+activesupport (5.2.6) lib/active_support/callbacks.rb:132:in `run_callbacks'
+actionpack (5.2.6) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (5.2.6) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (5.2.6) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (5.2.6) lib/active_support/notifications.rb:168:in `block in instrument'
+activesupport (5.2.6) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activesupport (5.2.6) lib/active_support/notifications.rb:168:in `instrument'
+actionpack (5.2.6) lib/action_controller/metal/instrumentation.rb:32:in `process_action'
+actionpack (5.2.6) lib/action_controller/metal/params_wrapper.rb:256:in `process_action'
+activerecord (5.2.6) lib/active_record/railties/controller_runtime.rb:24:in `process_action'
+actionpack (5.2.6) lib/abstract_controller/base.rb:134:in `process'
+actionview (5.2.6) lib/action_view/rendering.rb:32:in `process'
+actionpack (5.2.6) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (5.2.6) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (5.2.6) lib/action_dispatch/routing/route_set.rb:52:in `dispatch'
+actionpack (5.2.6) lib/action_dispatch/routing/route_set.rb:34:in `serve'
+actionpack (5.2.6) lib/action_dispatch/journey/router.rb:52:in `block in serve'
+actionpack (5.2.6) lib/action_dispatch/journey/router.rb:35:in `each'
+actionpack (5.2.6) lib/action_dispatch/journey/router.rb:35:in `serve'
+actionpack (5.2.6) lib/action_dispatch/routing/route_set.rb:840:in `call'
+warden (1.2.9) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.9) lib/warden/manager.rb:34:in `catch'
+warden (1.2.9) lib/warden/manager.rb:34:in `call'
+rack (2.2.3) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+actionpack (5.2.6) lib/action_dispatch/http/content_security_policy.rb:18:in `call'
+rack (2.2.3) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.3) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/cookies.rb:670:in `call'
+activerecord (5.2.6) lib/active_record/migration.rb:559:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.6) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.6) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.6) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.6) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.6) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.6) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+railties (5.2.6) lib/rails/engine.rb:524:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2021-12-11 07:37:51 +0530
+Processing by SsoController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client1/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  Rendering sso/index.html.erb within layouts/application
+  Rendered sso/index.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 45ms (Views: 26.8ms | ActiveRecord: 0.6ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2021-12-11 07:43:27 +0530
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client1/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Processing by Users::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"Pxn2uPtkgvxTUx70wXXNxNesj0gYpgkKDf/FZ85Z1SIMfPeo+xTPMv0VsmVMw0yJdzvASLq1QLIAm0VU6TRusQ=="}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client1/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users/sessions_controller.rb:22
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users/sessions_controller.rb:22
+Redirected to http://localhost:3000/
+Completed 302 Found in 29ms (ActiveRecord: 2.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2021-12-11 07:43:27 +0530
+Processing by SsoController#index as HTML
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2021-12-11 07:43:27 +0530
+Processing by Users::SessionsController#new as HTML
+  Rendering /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/shared/_links.html.erb (1.9ms)
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application (11.1ms)
+Completed 200 OK in 347ms (Views: 343.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2021-12-11 07:43:34 +0530
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"j8mdHlqIWQfhIHG0koWIw8AlOK8Cg8Cpv5rF/oH4q7qlokRbdv8z/XFzCdo+MJExqz2vxDIm/72momPrMrfoxw==", "user"=>{"email"=>"santattech@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users/sessions_controller.rb:13
+Redirected to http://localhost:3000/
+Completed 302 Found in 180ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2021-12-11 07:43:34 +0530
+Processing by SsoController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client1/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  Rendering sso/index.html.erb within layouts/application
+  Rendered sso/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 33ms (Views: 27.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/sso/get_active_token" for 127.0.0.1 at 2021-12-11 07:47:32 +0530
+Processing by SsoController#get_active_token as HTML
+Completed 406 Not Acceptable in 29141ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::UnknownFormat (SsoController#get_active_token is missing a template for this request format and variant.
+
+request.formats: ["text/html"]
+request.variant: []
+
+NOTE! For XHR/Ajax or API requests, this action would normally respond with 204 No Content: an empty white screen. Since you're loading it in a web browser, we assume that you expected to actually render a template, not nothing, so we're showing an error to be extra-clear. If you expect 204 No Content, carry on. That's what you'll get from an XHR or API request. Give it a shot.):
+  
+actionpack (5.2.6) lib/action_controller/metal/implicit_render.rb:55:in `default_render'
+actionpack (5.2.6) lib/action_controller/metal/basic_implicit_render.rb:6:in `block in send_action'
+actionpack (5.2.6) lib/action_controller/metal/basic_implicit_render.rb:6:in `tap'
+actionpack (5.2.6) lib/action_controller/metal/basic_implicit_render.rb:6:in `send_action'
+actionpack (5.2.6) lib/abstract_controller/base.rb:194:in `process_action'
+actionpack (5.2.6) lib/action_controller/metal/rendering.rb:30:in `process_action'
+actionpack (5.2.6) lib/abstract_controller/callbacks.rb:42:in `block in process_action'
+activesupport (5.2.6) lib/active_support/callbacks.rb:132:in `run_callbacks'
+actionpack (5.2.6) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (5.2.6) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (5.2.6) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (5.2.6) lib/active_support/notifications.rb:168:in `block in instrument'
+activesupport (5.2.6) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activesupport (5.2.6) lib/active_support/notifications.rb:168:in `instrument'
+actionpack (5.2.6) lib/action_controller/metal/instrumentation.rb:32:in `process_action'
+actionpack (5.2.6) lib/action_controller/metal/params_wrapper.rb:256:in `process_action'
+activerecord (5.2.6) lib/active_record/railties/controller_runtime.rb:24:in `process_action'
+actionpack (5.2.6) lib/abstract_controller/base.rb:134:in `process'
+actionview (5.2.6) lib/action_view/rendering.rb:32:in `process'
+actionpack (5.2.6) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (5.2.6) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (5.2.6) lib/action_dispatch/routing/route_set.rb:52:in `dispatch'
+actionpack (5.2.6) lib/action_dispatch/routing/route_set.rb:34:in `serve'
+actionpack (5.2.6) lib/action_dispatch/journey/router.rb:52:in `block in serve'
+actionpack (5.2.6) lib/action_dispatch/journey/router.rb:35:in `each'
+actionpack (5.2.6) lib/action_dispatch/journey/router.rb:35:in `serve'
+actionpack (5.2.6) lib/action_dispatch/routing/route_set.rb:840:in `call'
+warden (1.2.9) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.9) lib/warden/manager.rb:34:in `catch'
+warden (1.2.9) lib/warden/manager.rb:34:in `call'
+rack (2.2.3) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+actionpack (5.2.6) lib/action_dispatch/http/content_security_policy.rb:18:in `call'
+rack (2.2.3) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.3) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/cookies.rb:670:in `call'
+activerecord (5.2.6) lib/active_record/migration.rb:559:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.6) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.6) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.6) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.6) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.6) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.6) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+railties (5.2.6) lib/rails/engine.rb:524:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/sso/get_active_token" for 127.0.0.1 at 2021-12-11 07:51:18 +0530
+Processing by SsoController#get_active_token as HTML
+Completed 406 Not Acceptable in 164197ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::UnknownFormat (SsoController#get_active_token is missing a template for this request format and variant.
+
+request.formats: ["text/html"]
+request.variant: []
+
+NOTE! For XHR/Ajax or API requests, this action would normally respond with 204 No Content: an empty white screen. Since you're loading it in a web browser, we assume that you expected to actually render a template, not nothing, so we're showing an error to be extra-clear. If you expect 204 No Content, carry on. That's what you'll get from an XHR or API request. Give it a shot.):
+  
+actionpack (5.2.6) lib/action_controller/metal/implicit_render.rb:55:in `default_render'
+actionpack (5.2.6) lib/action_controller/metal/basic_implicit_render.rb:6:in `block in send_action'
+actionpack (5.2.6) lib/action_controller/metal/basic_implicit_render.rb:6:in `tap'
+actionpack (5.2.6) lib/action_controller/metal/basic_implicit_render.rb:6:in `send_action'
+actionpack (5.2.6) lib/abstract_controller/base.rb:194:in `process_action'
+actionpack (5.2.6) lib/action_controller/metal/rendering.rb:30:in `process_action'
+actionpack (5.2.6) lib/abstract_controller/callbacks.rb:42:in `block in process_action'
+activesupport (5.2.6) lib/active_support/callbacks.rb:132:in `run_callbacks'
+actionpack (5.2.6) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (5.2.6) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (5.2.6) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (5.2.6) lib/active_support/notifications.rb:168:in `block in instrument'
+activesupport (5.2.6) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activesupport (5.2.6) lib/active_support/notifications.rb:168:in `instrument'
+actionpack (5.2.6) lib/action_controller/metal/instrumentation.rb:32:in `process_action'
+actionpack (5.2.6) lib/action_controller/metal/params_wrapper.rb:256:in `process_action'
+activerecord (5.2.6) lib/active_record/railties/controller_runtime.rb:24:in `process_action'
+actionpack (5.2.6) lib/abstract_controller/base.rb:134:in `process'
+actionview (5.2.6) lib/action_view/rendering.rb:32:in `process'
+actionpack (5.2.6) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (5.2.6) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (5.2.6) lib/action_dispatch/routing/route_set.rb:52:in `dispatch'
+actionpack (5.2.6) lib/action_dispatch/routing/route_set.rb:34:in `serve'
+actionpack (5.2.6) lib/action_dispatch/journey/router.rb:52:in `block in serve'
+actionpack (5.2.6) lib/action_dispatch/journey/router.rb:35:in `each'
+actionpack (5.2.6) lib/action_dispatch/journey/router.rb:35:in `serve'
+actionpack (5.2.6) lib/action_dispatch/routing/route_set.rb:840:in `call'
+warden (1.2.9) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.9) lib/warden/manager.rb:34:in `catch'
+warden (1.2.9) lib/warden/manager.rb:34:in `call'
+rack (2.2.3) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+actionpack (5.2.6) lib/action_dispatch/http/content_security_policy.rb:18:in `call'
+rack (2.2.3) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.3) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/cookies.rb:670:in `call'
+activerecord (5.2.6) lib/active_record/migration.rb:559:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.6) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.6) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.6) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.6) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.6) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.6) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+railties (5.2.6) lib/rails/engine.rb:524:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/sso/get_active_token" for 127.0.0.1 at 2021-12-11 07:54:05 +0530
+Processing by SsoController#get_active_token as HTML
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/sso/get_active_token" for 127.0.0.1 at 2021-12-11 07:55:15 +0530
+Processing by SsoController#get_active_token as HTML
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/sso/get_active_token" for 127.0.0.1 at 2021-12-11 07:55:17 +0530
+Processing by SsoController#get_active_token as HTML
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2021-12-11 07:57:34 +0530
+Processing by Users::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"nWFbklhRGKU1A1963BN6yEB2lIzJ8GcwykWJtvtE38NAHUMzfeHuV95/8GqXF9QK4Kahod0ejYTMs6lrnWPPag=="}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client1/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users/sessions_controller.rb:22
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users/sessions_controller.rb:22
+Redirected to http://localhost:3000/
+Completed 302 Found in 22ms (ActiveRecord: 1.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2021-12-11 07:57:34 +0530
+Processing by SsoController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2021-12-11 07:57:34 +0530
+Processing by Users::SessionsController#new as HTML
+  Rendering /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/shared/_links.html.erb (1.7ms)
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application (8.5ms)
+Completed 200 OK in 41ms (Views: 39.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2021-12-11 07:57:43 +0530
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"zeo/R6kgY+rp7x3cKl+Ny3gqD3DpU2yo4fYjkFk0rhFsnHElr5RNJkI1Nu1Dw7qisy7H9yoj8YF08j0UjNp39w==", "user"=>{"email"=>"santattech@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users/sessions_controller.rb:13
+Redirected to http://localhost:3000/
+Completed 302 Found in 179ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2021-12-11 07:57:44 +0530
+Processing by SsoController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client1/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  Rendering sso/index.html.erb within layouts/application
+  Rendered sso/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 32ms (Views: 27.0ms | ActiveRecord: 0.3ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2021-12-11 07:57:51 +0530
+Processing by Users::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"Pu1I67uj8Ff6B26hhmktTqLgOWmm9ddff4RivmT4/JFEK/I8QIQWEYqlYbaEaTvZLXsV8dtP8kuTYN9gRcY78w=="}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client1/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.5ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users/sessions_controller.rb:22
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users/sessions_controller.rb:22
+Redirected to http://localhost:3000/
+Completed 302 Found in 9ms (ActiveRecord: 0.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2021-12-11 07:57:51 +0530
+Processing by SsoController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2021-12-11 07:57:51 +0530
+Processing by Users::SessionsController#new as HTML
+  Rendering /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/shared/_links.html.erb (1.7ms)
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application (7.6ms)
+Completed 200 OK in 43ms (Views: 40.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/sso/get_active_token" for 127.0.0.1 at 2021-12-11 08:14:29 +0530
+Processing by SsoController#get_active_token as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:41
+Completed 200 OK in 6ms (Views: 0.4ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/sso/get_active_token?app_id=200" for 127.0.0.1 at 2021-12-11 08:14:59 +0530
+Processing by SsoController#get_active_token as HTML
+  Parameters: {"app_id"=>"200"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:41
+Completed 200 OK in 5ms (Views: 0.4ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2021-12-11 08:15:07 +0530
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"2KchJGN9wE7XV3FIIO0AMunfvlCdFudcMThzlhZrauVlOo9WW6XiW5HfTmD7k+Xm/p6B6k8lnM0h1tISTWY8xw==", "user"=>{"email"=>"santattech@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users/sessions_controller.rb:13
+Redirected to http://localhost:3000/
+Completed 302 Found in 182ms (ActiveRecord: 0.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2021-12-11 08:15:07 +0530
+Processing by SsoController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client1/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  Rendering sso/index.html.erb within layouts/application
+  Rendered sso/index.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 32ms (Views: 26.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/sso/get_active_token?app_id=200" for 127.0.0.1 at 2021-12-11 08:15:11 +0530
+Processing by SsoController#get_active_token as HTML
+  Parameters: {"app_id"=>"200"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:41
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT "tokens".* FROM "tokens" WHERE "tokens"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/controllers/sso_controller.rb:43
+  [1m[36mToken Load (0.6ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."user_id" = ? AND "tokens"."app_id" = ? LIMIT ?[0m  [["user_id", 1], ["app_id", "200"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:14
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:16
+  [1m[36mToken Create (0.9ms)[0m  [1m[32mINSERT INTO "tokens" ("user_id", "token", "created_at", "updated_at", "app_id") VALUES (?, ?, ?, ?, ?)[0m  [["user_id", 1], ["token", "0341e0d9bac4ee4b28d3945bbacd048e"], ["created_at", "2021-12-11 02:45:12.021627"], ["updated_at", "2021-12-11 02:45:12.021627"], ["app_id", "200"]]
+  ↳ app/models/user.rb:16
+  [1m[35m (2.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/user.rb:16
+Completed 200 OK in 45ms (Views: 0.3ms | ActiveRecord: 6.4ms)
+
+
+Started GET "/sso/authenticate?username=santattech%40gmail.com&password=[FILTERED]&app_id=100" for 127.0.0.1 at 2021-12-11 08:15:36 +0530
+Processing by SsoController#authenticate as */*
+  Parameters: {"username"=>"santattech@gmail.com", "password"=>"[FILTERED]", "app_id"=>"100"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:24
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."user_id" = ? AND "tokens"."app_id" = ? LIMIT ?[0m  [["user_id", 1], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:14
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:16
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/user.rb:16
+Completed 200 OK in 166ms (Views: 0.4ms | ActiveRecord: 0.8ms)
+
+
+  [1m[36mToken Load (0.8ms)[0m  [1m[34mSELECT "tokens".* FROM "tokens"[0m
+Started GET "/sso/verify_token?token=0341e0d9bac4ee4b28d3945bbacd048e&app_id=100" for 127.0.0.1 at 2021-12-11 08:17:10 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"0341e0d9bac4ee4b28d3945bbacd048e", "app_id"=>"100"}
+  [1m[36mToken Load (0.5ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "0341e0d9bac4ee4b28d3945bbacd048e"], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:13
+Completed 200 OK in 4ms (Views: 0.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/sso/verify_token?token=50f4139b46faa432930cba4a9b48e5b5&app_id=100" for 127.0.0.1 at 2021-12-11 08:17:24 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"50f4139b46faa432930cba4a9b48e5b5", "app_id"=>"100"}
+  [1m[36mToken Load (0.3ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "50f4139b46faa432930cba4a9b48e5b5"], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:13
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:17
+Completed 200 OK in 6ms (Views: 0.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/sso/verify_token?token=50f4139b46faa432930cba4a9b48e5b5&app_id=100" for 127.0.0.1 at 2021-12-11 08:17:58 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"50f4139b46faa432930cba4a9b48e5b5", "app_id"=>"100"}
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "50f4139b46faa432930cba4a9b48e5b5"], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:13
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:17
+Completed 200 OK in 6ms (Views: 0.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/sso/verify_token?token=50f4139b46faa432930cba4a9b48e5b5&app_id=200" for 127.0.0.1 at 2021-12-11 08:28:40 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"50f4139b46faa432930cba4a9b48e5b5", "app_id"=>"200"}
+  [1m[36mToken Load (0.4ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "50f4139b46faa432930cba4a9b48e5b5"], ["app_id", "200"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:13
+Completed 200 OK in 4ms (Views: 0.5ms | ActiveRecord: 0.4ms)
+
+
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT "tokens".* FROM "tokens"[0m
+Started GET "/sso/authenticate?username=santattech%40gmail.com&password=[FILTERED]&app_id=100" for 127.0.0.1 at 2021-12-11 08:29:57 +0530
+Processing by SsoController#authenticate as */*
+  Parameters: {"username"=>"santattech@gmail.com", "password"=>"[FILTERED]", "app_id"=>"100"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:24
+  [1m[36mToken Load (0.3ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."user_id" = ? AND "tokens"."app_id" = ? LIMIT ?[0m  [["user_id", 1], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:14
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:16
+  [1m[35m (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/user.rb:16
+Completed 200 OK in 172ms (Views: 0.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/sso/authenticate?username=santattech%40gmail.com&password=[FILTERED]&app_id=200" for 127.0.0.1 at 2021-12-11 08:30:10 +0530
+Processing by SsoController#authenticate as */*
+  Parameters: {"username"=>"santattech@gmail.com", "password"=>"[FILTERED]", "app_id"=>"200"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:24
+  [1m[36mToken Load (0.4ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."user_id" = ? AND "tokens"."app_id" = ? LIMIT ?[0m  [["user_id", 1], ["app_id", "200"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:14
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:16
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/user.rb:16
+Completed 200 OK in 174ms (Views: 0.4ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/sso/verify_token?token=0341e0d9bac4ee4b28d3945bbacd048e&app_id=200" for 127.0.0.1 at 2021-12-11 08:30:25 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"0341e0d9bac4ee4b28d3945bbacd048e", "app_id"=>"200"}
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "0341e0d9bac4ee4b28d3945bbacd048e"], ["app_id", "200"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:13
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:17
+Completed 200 OK in 7ms (Views: 0.4ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/sso/verify_token?token=3032ffc9f14e45a46f68cf4fabaa4bc1&app_id=100" for 127.0.0.1 at 2021-12-11 08:30:41 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"3032ffc9f14e45a46f68cf4fabaa4bc1", "app_id"=>"100"}
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "3032ffc9f14e45a46f68cf4fabaa4bc1"], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:13
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/sso/authenticate?username=santattech%40gmail.com&password=[FILTERED]&app_id=100" for 127.0.0.1 at 2021-12-11 08:30:51 +0530
+Processing by SsoController#authenticate as */*
+  Parameters: {"username"=>"santattech@gmail.com", "password"=>"[FILTERED]", "app_id"=>"100"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:24
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."user_id" = ? AND "tokens"."app_id" = ? LIMIT ?[0m  [["user_id", 1], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:14
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:16
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/user.rb:16
+Completed 200 OK in 168ms (Views: 0.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/sso/verify_token?token=50f4139b46faa432930cba4a9b48e5b5&app_id=100" for 127.0.0.1 at 2021-12-11 08:30:59 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"50f4139b46faa432930cba4a9b48e5b5", "app_id"=>"100"}
+  [1m[36mToken Load (0.3ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "50f4139b46faa432930cba4a9b48e5b5"], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:13
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:17
+Completed 200 OK in 7ms (Views: 0.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/sso/destroy_token?token=50f4139b46faa432930cba4a9b48e5b5&app_id=100" for 127.0.0.1 at 2021-12-11 08:30:59 +0530
+Processing by SsoController#destroy_token as */*
+  Parameters: {"token"=>"50f4139b46faa432930cba4a9b48e5b5", "app_id"=>"100"}
+  [1m[36mToken Load (0.5ms)[0m  [1m[34mSELECT "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ?[0m  [["token", "50f4139b46faa432930cba4a9b48e5b5"], ["app_id", "100"]]
+  ↳ app/controllers/sso_controller.rb:36
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/sso_controller.rb:36
+  [1m[36mToken Destroy (0.4ms)[0m  [1m[31mDELETE FROM "tokens" WHERE "tokens"."id" = ?[0m  [["id", 10]]
+  ↳ app/controllers/sso_controller.rb:36
+  [1m[35m (2.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/sso_controller.rb:36
+Completed 200 OK in 14ms (Views: 0.5ms | ActiveRecord: 3.4ms)
+
+
+Started GET "/sso/verify_token?token=0341e0d9bac4ee4b28d3945bbacd048e&app_id=200" for 127.0.0.1 at 2021-12-11 08:31:04 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"0341e0d9bac4ee4b28d3945bbacd048e", "app_id"=>"200"}
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "0341e0d9bac4ee4b28d3945bbacd048e"], ["app_id", "200"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:13
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:17
+Completed 200 OK in 6ms (Views: 0.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/sso/verify_token?token=0341e0d9bac4ee4b28d3945bbacd048e&app_id=200" for 127.0.0.1 at 2021-12-11 08:31:05 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"0341e0d9bac4ee4b28d3945bbacd048e", "app_id"=>"200"}
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "0341e0d9bac4ee4b28d3945bbacd048e"], ["app_id", "200"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:13
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:17
+Completed 200 OK in 6ms (Views: 0.5ms | ActiveRecord: 0.6ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2021-12-11 08:34:30 +0530
+Processing by Users::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"oKYex2Ti/Kpi5zCToHkENElXmyzxSTdSKo02hyWgSXYXiOOBeHIyXspCocyWPvLrqtAKmXqZfOC/twiI4HpkpA=="}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client1/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users/sessions_controller.rb:22
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users/sessions_controller.rb:22
+Redirected to http://localhost:3000/
+Completed 302 Found in 25ms (ActiveRecord: 2.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2021-12-11 08:34:30 +0530
+Processing by SsoController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2021-12-11 08:34:30 +0530
+Processing by Users::SessionsController#new as HTML
+  Rendering /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/shared/_links.html.erb (1.9ms)
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 39ms (Views: 35.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2021-12-11 08:34:44 +0530
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"5QqLOwMwmN+PAb9O9c7c+wbfOXX136xLcI+W6mjVGGBSjTP+I2mawqFgd5P114o1eI9iDqjGeaIQoygeGfL/MA==", "user"=>{"email"=>"santattech@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users/sessions_controller.rb:13
+Redirected to http://localhost:3000/
+Completed 302 Found in 176ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2021-12-11 08:34:44 +0530
+Processing by SsoController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client1/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  Rendering sso/index.html.erb within layouts/application
+  Rendered sso/index.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 54ms (Views: 47.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/location" for 127.0.0.1 at 2021-12-11 08:35:07 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/location"):
+  
+actionpack (5.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.6) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.6) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.6) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.6) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+railties (5.2.6) lib/rails/engine.rb:524:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2021-12-11 08:35:35 +0530
+Processing by Users::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"s5hKheah9tyE2bTi0/tbFE1LERQJ/fn/257wbXdyWaBstEOSPaX/1aSkVpNa/YQrjOnfq70e2oHFw/8EGVZ9dw=="}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client1/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users/sessions_controller.rb:22
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users/sessions_controller.rb:22
+Redirected to http://localhost:3000/
+Completed 302 Found in 10ms (ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2021-12-11 08:35:35 +0530
+Processing by SsoController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2021-12-11 08:35:35 +0530
+Processing by Users::SessionsController#new as HTML
+  Rendering /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/shared/_links.html.erb (1.4ms)
+  Rendered /usr/share/rvm/gems/ruby-2.4.5@client1/gems/devise-4.8.0/app/views/devise/sessions/new.html.erb within layouts/application (7.1ms)
+Completed 200 OK in 41ms (Views: 39.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2021-12-11 08:38:36 +0530
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client1/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Processing by Users::SessionsController#new as HTML
+  Rendering users/sessions/new.html.erb within layouts/application
+  Rendered users/shared/_links.html.erb (2.1ms)
+  Rendered users/sessions/new.html.erb within layouts/application (13.2ms)
+Completed 200 OK in 318ms (Views: 298.2ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2021-12-11 08:38:42 +0530
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"o13skYK0nMYHAI5HYxeobI03z5RJKxJJIP67ztkOv9Za4mRVxNzpULOr/1LISWJ3GM4W6fNhgy5B0j11j+c3lg==", "user"=>{"email"=>"santattech@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users/sessions_controller.rb:13
+Redirected to http://localhost:3000/
+Completed 302 Found in 176ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2021-12-11 08:38:42 +0530
+Processing by SsoController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client1/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  Rendering sso/index.html.erb within layouts/application
+  Rendered sso/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 34ms (Views: 29.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/sso/get_active_token" for 127.0.0.1 at 2021-12-11 08:41:00 +0530
+Processing by SsoController#get_active_token as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:42
+Completed 200 OK in 4ms (Views: 0.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/sso/get_active_token" for 127.0.0.1 at 2021-12-11 08:41:45 +0530
+Processing by SsoController#get_active_token as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:42
+Completed 200 OK in 28981ms (Views: 0.4ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/sso/get_active_token?app_id=" for 127.0.0.1 at 2021-12-11 08:43:49 +0530
+Processing by SsoController#get_active_token as HTML
+  Parameters: {"app_id"=>""}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:42
+Completed 200 OK in 22985ms (Views: 0.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/sso/get_active_token?app_id=100" for 127.0.0.1 at 2021-12-11 08:44:20 +0530
+Processing by SsoController#get_active_token as HTML
+  Parameters: {"app_id"=>"100"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:42
+  [1m[36mToken Load (0.3ms)[0m  [1m[34mSELECT "tokens".* FROM "tokens" WHERE "tokens"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/controllers/sso_controller.rb:46
+  [1m[36mToken Load (0.6ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."user_id" = ? AND "tokens"."app_id" = ? LIMIT ?[0m  [["user_id", 1], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:14
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:16
+  [1m[36mToken Create (1.0ms)[0m  [1m[32mINSERT INTO "tokens" ("user_id", "token", "created_at", "updated_at", "app_id") VALUES (?, ?, ?, ?, ?)[0m  [["user_id", 1], ["token", "5a7401059186090f73fe5ec8a39fb09b"], ["created_at", "2021-12-11 03:14:27.264291"], ["updated_at", "2021-12-11 03:14:27.264291"], ["app_id", "100"]]
+  ↳ app/models/user.rb:16
+  [1m[35m (2.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/user.rb:16
+Completed 200 OK in 6849ms (Views: 0.4ms | ActiveRecord: 5.3ms)
+
+
+Started GET "/sso/verify_token?token=5a7401059186090f73fe5ec8a39fb09b&app_id=100" for 127.0.0.1 at 2021-12-11 08:44:58 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"5a7401059186090f73fe5ec8a39fb09b", "app_id"=>"100"}
+  [1m[36mToken Load (0.4ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "5a7401059186090f73fe5ec8a39fb09b"], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:13
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:17
+Completed 200 OK in 5ms (Views: 0.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/sso/authenticate?username=santattech%40gmail.com&password=[FILTERED]&app_id=100" for 127.0.0.1 at 2021-12-11 08:45:04 +0530
+Processing by SsoController#authenticate as */*
+  Parameters: {"username"=>"santattech@gmail.com", "password"=>"[FILTERED]", "app_id"=>"100"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:24
+  [1m[36mToken Load (0.4ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."user_id" = ? AND "tokens"."app_id" = ? LIMIT ?[0m  [["user_id", 1], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:14
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:16
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/user.rb:16
+Completed 200 OK in 176ms (Views: 0.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/sso/verify_token?token=5a7401059186090f73fe5ec8a39fb09b&app_id=200" for 127.0.0.1 at 2021-12-11 08:45:17 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"5a7401059186090f73fe5ec8a39fb09b", "app_id"=>"200"}
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "5a7401059186090f73fe5ec8a39fb09b"], ["app_id", "200"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:13
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/sso/get_active_token" for 127.0.0.1 at 2021-12-11 08:46:10 +0530
+Processing by SsoController#get_active_token as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:42
+Completed 200 OK in 5640ms (Views: 0.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/sso/get_active_token?app_id=200" for 127.0.0.1 at 2021-12-11 08:47:03 +0530
+Processing by SsoController#get_active_token as HTML
+  Parameters: {"app_id"=>"200"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:42
+Completed 200 OK in 6266ms (Views: 0.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/sso/get_active_token?app_id=200" for 127.0.0.1 at 2021-12-11 08:47:35 +0530
+Processing by SsoController#get_active_token as HTML
+  Parameters: {"app_id"=>"200"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:42
+Completed 200 OK in 116132ms (Views: 0.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/sso/get_active_token?app_id=200" for 127.0.0.1 at 2021-12-11 08:49:35 +0530
+Processing by SsoController#get_active_token as HTML
+  Parameters: {"app_id"=>"200"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:42
+  [1m[36mToken Load (0.5ms)[0m  [1m[34mSELECT "tokens".* FROM "tokens" WHERE "tokens"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/controllers/sso_controller.rb:45
+  [1m[36mToken Load (0.4ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."user_id" = ? AND "tokens"."app_id" = ? LIMIT ?[0m  [["user_id", 1], ["app_id", "200"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:14
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:16
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/user.rb:16
+Completed 200 OK in 43ms (Views: 0.4ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/sso/verify_token?token=0341e0d9bac4ee4b28d3945bbacd048e&app_id=100" for 127.0.0.1 at 2021-12-11 08:50:01 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"0341e0d9bac4ee4b28d3945bbacd048e", "app_id"=>"100"}
+  [1m[36mToken Load (0.5ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "0341e0d9bac4ee4b28d3945bbacd048e"], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:13
+Completed 200 OK in 5ms (Views: 0.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/sso/verify_token?token=5a7401059186090f73fe5ec8a39fb09b&app_id=100" for 127.0.0.1 at 2021-12-11 08:50:05 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"5a7401059186090f73fe5ec8a39fb09b", "app_id"=>"100"}
+  [1m[36mToken Load (0.4ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "5a7401059186090f73fe5ec8a39fb09b"], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:13
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:17
+Completed 200 OK in 7ms (Views: 0.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/sso/verify_token?token=0341e0d9bac4ee4b28d3945bbacd048e&app_id=200" for 127.0.0.1 at 2021-12-11 08:50:12 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"0341e0d9bac4ee4b28d3945bbacd048e", "app_id"=>"200"}
+  [1m[36mToken Load (0.4ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "0341e0d9bac4ee4b28d3945bbacd048e"], ["app_id", "200"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:13
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:17
+Completed 200 OK in 5ms (Views: 0.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/sso/authenticate?username=santattech%40gmail.com&password=[FILTERED]&app_id=200" for 127.0.0.1 at 2021-12-11 08:50:20 +0530
+Processing by SsoController#authenticate as */*
+  Parameters: {"username"=>"santattech@gmail.com", "password"=>"[FILTERED]", "app_id"=>"200"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:24
+  [1m[36mToken Load (0.3ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."user_id" = ? AND "tokens"."app_id" = ? LIMIT ?[0m  [["user_id", 1], ["app_id", "200"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:14
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:16
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/user.rb:16
+Completed 200 OK in 184ms (Views: 0.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/sso/authenticate?username=santattech%40gmail.com&password=[FILTERED]&app_id=200" for 127.0.0.1 at 2021-12-11 08:50:23 +0530
+Processing by SsoController#authenticate as */*
+  Parameters: {"username"=>"santattech@gmail.com", "password"=>"[FILTERED]", "app_id"=>"200"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:24
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."user_id" = ? AND "tokens"."app_id" = ? LIMIT ?[0m  [["user_id", 1], ["app_id", "200"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:14
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:16
+  [1m[35m (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/user.rb:16
+Completed 200 OK in 175ms (Views: 0.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/sso/verify_token?token=50f4139b46faa432930cba4a9b48e5b5&app_id=100" for 127.0.0.1 at 2021-12-11 08:50:31 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"50f4139b46faa432930cba4a9b48e5b5", "app_id"=>"100"}
+  [1m[36mToken Load (0.3ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "50f4139b46faa432930cba4a9b48e5b5"], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:13
+Completed 200 OK in 4ms (Views: 0.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/sso/verify_token?token=5a7401059186090f73fe5ec8a39fb09b&app_id=100" for 127.0.0.1 at 2021-12-11 08:50:46 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"5a7401059186090f73fe5ec8a39fb09b", "app_id"=>"100"}
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "5a7401059186090f73fe5ec8a39fb09b"], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:13
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:17
+Completed 200 OK in 5ms (Views: 0.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/sso/destroy_token?token=5a7401059186090f73fe5ec8a39fb09b&app_id=100" for 127.0.0.1 at 2021-12-11 08:50:46 +0530
+Processing by SsoController#destroy_token as */*
+  Parameters: {"token"=>"5a7401059186090f73fe5ec8a39fb09b", "app_id"=>"100"}
+  [1m[36mToken Load (0.3ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "5a7401059186090f73fe5ec8a39fb09b"], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:36
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:37
+  [1m[36mToken Load (0.1ms)[0m  [1m[34mSELECT "tokens".* FROM "tokens" WHERE "tokens"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/controllers/sso_controller.rb:37
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/sso_controller.rb:37
+  [1m[36mToken Destroy (0.5ms)[0m  [1m[31mDELETE FROM "tokens" WHERE "tokens"."id" = ?[0m  [["id", 11]]
+  ↳ app/controllers/sso_controller.rb:37
+  [1m[36mToken Destroy (0.2ms)[0m  [1m[31mDELETE FROM "tokens" WHERE "tokens"."id" = ?[0m  [["id", 12]]
+  ↳ app/controllers/sso_controller.rb:37
+  [1m[35m (2.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/sso_controller.rb:37
+Completed 200 OK in 17ms (Views: 0.7ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/sso/verify_token?token=0341e0d9bac4ee4b28d3945bbacd048e&app_id=200" for 127.0.0.1 at 2021-12-11 08:50:51 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"0341e0d9bac4ee4b28d3945bbacd048e", "app_id"=>"200"}
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "0341e0d9bac4ee4b28d3945bbacd048e"], ["app_id", "200"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:13
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/sso/authenticate?username=santattech%40gmail.com&password=[FILTERED]&app_id=200" for 127.0.0.1 at 2021-12-11 08:50:56 +0530
+Processing by SsoController#authenticate as */*
+  Parameters: {"username"=>"santattech@gmail.com", "password"=>"[FILTERED]", "app_id"=>"200"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:24
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."user_id" = ? AND "tokens"."app_id" = ? LIMIT ?[0m  [["user_id", 1], ["app_id", "200"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:14
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:16
+  [1m[36mToken Create (1.1ms)[0m  [1m[32mINSERT INTO "tokens" ("user_id", "token", "created_at", "updated_at", "app_id") VALUES (?, ?, ?, ?, ?)[0m  [["user_id", 1], ["token", "5d3211b0a3cf5bc3fbe9b108adc1b5e9"], ["created_at", "2021-12-11 03:20:57.031230"], ["updated_at", "2021-12-11 03:20:57.031230"], ["app_id", "200"]]
+  ↳ app/models/user.rb:16
+  [1m[35m (2.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/user.rb:16
+Completed 200 OK in 184ms (Views: 0.6ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/sso/verify_token?token=5a7401059186090f73fe5ec8a39fb09b&app_id=200" for 127.0.0.1 at 2021-12-11 08:51:25 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"5a7401059186090f73fe5ec8a39fb09b", "app_id"=>"200"}
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "5a7401059186090f73fe5ec8a39fb09b"], ["app_id", "200"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:13
+Completed 200 OK in 5ms (Views: 0.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/sso/verify_token?token=5d3211b0a3cf5bc3fbe9b108adc1b5e9&app_id=200" for 127.0.0.1 at 2021-12-11 08:51:35 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"5d3211b0a3cf5bc3fbe9b108adc1b5e9", "app_id"=>"200"}
+  [1m[36mToken Load (0.3ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "5d3211b0a3cf5bc3fbe9b108adc1b5e9"], ["app_id", "200"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:13
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:17
+Completed 200 OK in 6ms (Views: 0.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/sso/destroy_token?token=5d3211b0a3cf5bc3fbe9b108adc1b5e9&app_id=200" for 127.0.0.1 at 2021-12-11 08:51:36 +0530
+Processing by SsoController#destroy_token as */*
+  Parameters: {"token"=>"5d3211b0a3cf5bc3fbe9b108adc1b5e9", "app_id"=>"200"}
+  [1m[36mToken Load (0.3ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "5d3211b0a3cf5bc3fbe9b108adc1b5e9"], ["app_id", "200"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:36
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:37
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT "tokens".* FROM "tokens" WHERE "tokens"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/controllers/sso_controller.rb:37
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/sso_controller.rb:37
+  [1m[36mToken Destroy (0.6ms)[0m  [1m[31mDELETE FROM "tokens" WHERE "tokens"."id" = ?[0m  [["id", 13]]
+  ↳ app/controllers/sso_controller.rb:37
+  [1m[35m (2.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/sso_controller.rb:37
+Completed 200 OK in 15ms (Views: 0.4ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/sso/get_active_token?app_id=200" for 127.0.0.1 at 2021-12-11 08:51:52 +0530
+Processing by SsoController#get_active_token as HTML
+  Parameters: {"app_id"=>"200"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:42
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT "tokens".* FROM "tokens" WHERE "tokens"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/controllers/sso_controller.rb:45
+Completed 200 OK in 6ms (Views: 0.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/sso/get_active_token?app_id=200" for 127.0.0.1 at 2021-12-11 08:53:11 +0530
+Processing by SsoController#get_active_token as HTML
+  Parameters: {"app_id"=>"200"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:42
+  [1m[36mToken Load (0.3ms)[0m  [1m[34mSELECT "tokens".* FROM "tokens" WHERE "tokens"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/controllers/sso_controller.rb:45
+Completed 200 OK in 23ms (Views: 0.4ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2021-12-11 08:53:14 +0530
+Processing by SsoController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client1/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  Rendering sso/index.html.erb within layouts/application
+  Rendered sso/index.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 41ms (Views: 30.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/sso/get_active_token?app_id=200" for 127.0.0.1 at 2021-12-11 08:53:18 +0530
+Processing by SsoController#get_active_token as HTML
+  Parameters: {"app_id"=>"200"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:42
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.4ms)
+
+
+  
+NoMethodError (undefined method `app_ids' for nil:NilClass):
+  
+app/controllers/sso_controller.rb:43:in `get_active_token'
+Started GET "/sso/get_active_token" for 127.0.0.1 at 2021-12-11 08:53:23 +0530
+Processing by SsoController#get_active_token as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:42
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.2ms)
+
+
+  
+NoMethodError (undefined method `app_ids' for nil:NilClass):
+  
+app/controllers/sso_controller.rb:43:in `get_active_token'
+Started GET "/sso/get_active_token?app_id=200" for 127.0.0.1 at 2021-12-11 08:53:35 +0530
+Processing by SsoController#get_active_token as HTML
+  Parameters: {"app_id"=>"200"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:42
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.5ms)
+
+
+  
+NoMethodError (undefined method `app_ids' for nil:NilClass):
+  
+app/controllers/sso_controller.rb:43:in `get_active_token'
+Started GET "/sso/get_active_token?app_id=200" for 127.0.0.1 at 2021-12-11 08:54:04 +0530
+Processing by SsoController#get_active_token as HTML
+  Parameters: {"app_id"=>"200"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:42
+Completed 200 OK in 6ms (Views: 0.5ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2021-12-11 08:54:06 +0530
+Processing by SsoController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client1/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  Rendering sso/index.html.erb within layouts/application
+  Rendered sso/index.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 54ms (Views: 34.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2021-12-11 08:54:13 +0530
+Processing by SsoController#index as */*
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2021-12-11 08:54:13 +0530
+Processing by Users::SessionsController#new as */*
+  Rendering users/sessions/new.html.erb within layouts/application
+  Rendered users/shared/_links.html.erb (2.6ms)
+  Rendered users/sessions/new.html.erb within layouts/application (9.7ms)
+Completed 200 OK in 42ms (Views: 38.2ms | ActiveRecord: 0.0ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2021-12-11 08:56:20 +0530
+Processing by Users::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"JFbDqqnL9P3tICTpWFwhBPxaOrD36HqTkOBOi6qh7XO2CzWYKjwXsBNEdy6Z7Bdr7Zt7KBa8nQ7yexp1TFgf1w=="}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client1/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users/sessions_controller.rb:22
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users/sessions_controller.rb:22
+Redirected to http://localhost:3000/
+Completed 500 Internal Server Error in 29ms (ActiveRecord: 2.3ms)
+
+
+  
+NoMethodError (undefined method `tokens' for nil:NilClass):
+  
+app/controllers/users/sessions_controller.rb:23:in `destroy'
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2021-12-11 08:56:37 +0530
+Processing by Users::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"JFbDqqnL9P3tICTpWFwhBPxaOrD36HqTkOBOi6qh7XO2CzWYKjwXsBNEdy6Z7Bdr7Zt7KBa8nQ7yexp1TFgf1w=="}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client1/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  [1m[36mToken Load (0.3ms)[0m  [1m[34mSELECT "tokens".* FROM "tokens" WHERE "tokens"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/controllers/users/sessions_controller.rb:22
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users/sessions_controller.rb:23
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users/sessions_controller.rb:23
+Redirected to http://localhost:3000/
+Completed 302 Found in 28ms (ActiveRecord: 1.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2021-12-11 08:56:38 +0530
+Processing by SsoController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2021-12-11 08:56:38 +0530
+Processing by Users::SessionsController#new as HTML
+  Rendering users/sessions/new.html.erb within layouts/application
+  Rendered users/shared/_links.html.erb (2.2ms)
+  Rendered users/sessions/new.html.erb within layouts/application (6.9ms)
+Completed 200 OK in 54ms (Views: 50.9ms | ActiveRecord: 0.0ms)
+
+
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT "tokens".* FROM "tokens"[0m
+Started POST "/users/sign_in" for 127.0.0.1 at 2021-12-11 08:56:52 +0530
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"mJmKEBJPtPq9wiVTpLO1ZFfsPjKljcrNSNJ3p2AoobvM9rLYIj119ntCRYvQBAPzytqSOb5YYXA2daurwZK+iQ==", "user"=>{"email"=>"santattech@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users/sessions_controller.rb:13
+Redirected to http://localhost:3000/
+Completed 302 Found in 168ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2021-12-11 08:56:52 +0530
+Processing by SsoController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/share/rvm/gems/ruby-2.4.5@client1/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  Rendering sso/index.html.erb within layouts/application
+  Rendered sso/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 28ms (Views: 23.9ms | ActiveRecord: 0.3ms)
+
+
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT "tokens".* FROM "tokens"[0m
+Started GET "/sso/authenticate?username=santattech%40gmail.com&password=[FILTERED]&app_id=100" for 127.0.0.1 at 2021-12-11 08:57:10 +0530
+Processing by SsoController#authenticate as */*
+  Parameters: {"username"=>"santattech@gmail.com", "password"=>"[FILTERED]", "app_id"=>"100"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:24
+  [1m[36mToken Load (0.4ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."user_id" = ? AND "tokens"."app_id" = ? LIMIT ?[0m  [["user_id", 1], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:14
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:16
+  [1m[36mToken Create (1.1ms)[0m  [1m[32mINSERT INTO "tokens" ("user_id", "token", "created_at", "updated_at", "app_id") VALUES (?, ?, ?, ?, ?)[0m  [["user_id", 1], ["token", "ae44c97fd9947d0f3e03db0da5990c4c"], ["created_at", "2021-12-11 03:27:10.732514"], ["updated_at", "2021-12-11 03:27:10.732514"], ["app_id", "100"]]
+  ↳ app/models/user.rb:16
+  [1m[35m (3.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/user.rb:16
+Completed 200 OK in 198ms (Views: 0.7ms | ActiveRecord: 5.6ms)
+
+
+Started GET "/sso/authenticate?username=santattech%40gmail.com&password=[FILTERED]&app_id=200" for 127.0.0.1 at 2021-12-11 08:57:13 +0530
+Processing by SsoController#authenticate as */*
+  Parameters: {"username"=>"santattech@gmail.com", "password"=>"[FILTERED]", "app_id"=>"200"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:24
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."user_id" = ? AND "tokens"."app_id" = ? LIMIT ?[0m  [["user_id", 1], ["app_id", "200"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:14
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:16
+  [1m[36mToken Create (0.5ms)[0m  [1m[32mINSERT INTO "tokens" ("user_id", "token", "created_at", "updated_at", "app_id") VALUES (?, ?, ?, ?, ?)[0m  [["user_id", 1], ["token", "980d2e2f910ecf3aa497d29576cd96f1"], ["created_at", "2021-12-11 03:27:14.124079"], ["updated_at", "2021-12-11 03:27:14.124079"], ["app_id", "200"]]
+  ↳ app/models/user.rb:16
+  [1m[35m (2.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/user.rb:16
+Completed 200 OK in 183ms (Views: 0.3ms | ActiveRecord: 3.7ms)
+
+
+  [1m[36mToken Load (0.3ms)[0m  [1m[34mSELECT "tokens".* FROM "tokens"[0m
+Started GET "/sso/get_active_token?app_id=100" for 127.0.0.1 at 2021-12-11 08:58:08 +0530
+Processing by SsoController#get_active_token as HTML
+  Parameters: {"app_id"=>"100"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "santattech@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:42
+  [1m[36mToken Load (0.5ms)[0m  [1m[34mSELECT "tokens".* FROM "tokens" WHERE "tokens"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/controllers/sso_controller.rb:45
+  [1m[36mToken Load (0.6ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."user_id" = ? AND "tokens"."app_id" = ? LIMIT ?[0m  [["user_id", 1], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:14
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:16
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/user.rb:16
+Completed 200 OK in 14ms (Views: 0.4ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/sso/verify_token?token=5a7401059186090f73fe5ec8a39fb09b&app_id=100" for 127.0.0.1 at 2021-12-11 08:58:41 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"5a7401059186090f73fe5ec8a39fb09b", "app_id"=>"100"}
+  [1m[36mToken Load (0.4ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "5a7401059186090f73fe5ec8a39fb09b"], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:13
+Completed 200 OK in 4ms (Views: 0.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/sso/verify_token?token=5a7401059186090f73fe5ec8a39fb09b&app_id=100" for 127.0.0.1 at 2021-12-11 08:58:51 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"5a7401059186090f73fe5ec8a39fb09b", "app_id"=>"100"}
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "5a7401059186090f73fe5ec8a39fb09b"], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:13
+Completed 200 OK in 4ms (Views: 0.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/sso/verify_token?token=5a7401059186090f73fe5ec8a39fb09b&app_id=100" for 127.0.0.1 at 2021-12-11 08:58:56 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"5a7401059186090f73fe5ec8a39fb09b", "app_id"=>"100"}
+  [1m[36mToken Load (0.3ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "5a7401059186090f73fe5ec8a39fb09b"], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:13
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/sso/verify_token?token=ae44c97fd9947d0f3e03db0da5990c4c&app_id=100" for 127.0.0.1 at 2021-12-11 08:59:06 +0530
+Processing by SsoController#verify_token as */*
+  Parameters: {"token"=>"ae44c97fd9947d0f3e03db0da5990c4c", "app_id"=>"100"}
+  [1m[36mToken Load (0.3ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "ae44c97fd9947d0f3e03db0da5990c4c"], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:13
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:17
+Completed 200 OK in 7ms (Views: 0.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/sso/destroy_token?token=ae44c97fd9947d0f3e03db0da5990c4c&app_id=100" for 127.0.0.1 at 2021-12-11 08:59:06 +0530
+Processing by SsoController#destroy_token as */*
+  Parameters: {"token"=>"ae44c97fd9947d0f3e03db0da5990c4c", "app_id"=>"100"}
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT  "tokens".* FROM "tokens" WHERE "tokens"."token" = ? AND "tokens"."app_id" = ? ORDER BY "tokens"."id" ASC LIMIT ?[0m  [["token", "ae44c97fd9947d0f3e03db0da5990c4c"], ["app_id", "100"], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:36
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/sso_controller.rb:37
+  [1m[36mToken Load (0.2ms)[0m  [1m[34mSELECT "tokens".* FROM "tokens" WHERE "tokens"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/controllers/sso_controller.rb:37
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/sso_controller.rb:37
+  [1m[36mToken Destroy (0.6ms)[0m  [1m[31mDELETE FROM "tokens" WHERE "tokens"."id" = ?[0m  [["id", 14]]
+  ↳ app/controllers/sso_controller.rb:37
+  [1m[36mToken Destroy (0.3ms)[0m  [1m[31mDELETE FROM "tokens" WHERE "tokens"."id" = ?[0m  [["id", 15]]
+  ↳ app/controllers/sso_controller.rb:37
+  [1m[35m (2.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/sso_controller.rb:37
+Completed 200 OK in 18ms (Views: 0.4ms | ActiveRecord: 4.6ms)
+
+
+  [1m[36mToken Load (0.3ms)[0m  [1m[34mSELECT "tokens".* FROM "tokens"[0m
