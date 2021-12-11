@@ -1,0 +1,180 @@
+Started GET "/" for ::1 at 2021-12-06 19:01:00 +0530
+Processing by HomeController#index as HTML
+Redirected to http://localhost:3000?redirect_url=http://localhost:3002/
+Filter chain halted as :authenticated? rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/?token=e0f6da3c691e475ff0f3ec63dac0691c" for ::1 at 2021-12-06 19:01:05 +0530
+Processing by HomeController#index as HTML
+  Parameters: {"token"=>"e0f6da3c691e475ff0f3ec63dac0691c"}
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.0ms)
+
+
+  
+SocketError (Failed to open TCP connection to sso:3000 (getaddrinfo: Temporary failure in name resolution)):
+  
+app/controllers/application_controller.rb:13:in `authenticated?'
+Started GET "/?token=e0f6da3c691e475ff0f3ec63dac0691c" for ::1 at 2021-12-06 19:01:40 +0530
+Processing by HomeController#index as HTML
+  Parameters: {"token"=>"e0f6da3c691e475ff0f3ec63dac0691c"}
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 185ms (Views: 163.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/home/logout" for ::1 at 2021-12-06 19:02:10 +0530
+Processing by HomeController#logout as HTML
+Redirected to http://localhost:3002/guest
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/guest" for ::1 at 2021-12-06 19:02:10 +0530
+Processing by HomeController#guest as HTML
+  Rendering home/guest.html.erb within layouts/application
+  Rendered home/guest.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 29ms (Views: 25.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/dashboard" for 127.0.0.1 at 2021-12-11 08:27:58 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/dashboard"):
+  
+actionpack (5.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.6) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.6) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.6) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.6) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+railties (5.2.6) lib/rails/engine.rb:524:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/dashboard" for 127.0.0.1 at 2021-12-11 08:28:40 +0530
+Processing by HomeController#dashboard as */*
+Completed 401 Unauthorized in 15ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/sign_in" for 127.0.0.1 at 2021-12-11 08:30:10 +0530
+Processing by SessionsController#sign_in as */*
+  Parameters: {"username"=>"santattech@gmail.com", "password"=>"[FILTERED]", "session"=>{"username"=>"santattech@gmail.com", "password"=>"[FILTERED]"}}
+Completed 200 OK in 183ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/dashboard" for 127.0.0.1 at 2021-12-11 08:30:25 +0530
+Processing by HomeController#dashboard as */*
+Completed 200 OK in 17ms (Views: 0.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/dashboard" for 127.0.0.1 at 2021-12-11 08:31:04 +0530
+Processing by HomeController#dashboard as */*
+Completed 200 OK in 16ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/dashboard" for 127.0.0.1 at 2021-12-11 08:31:05 +0530
+Processing by HomeController#dashboard as */*
+Completed 200 OK in 19ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/dashboard" for 127.0.0.1 at 2021-12-11 08:45:17 +0530
+Processing by HomeController#dashboard as */*
+Completed 401 Unauthorized in 13ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_sso_url" for 127.0.0.1 at 2021-12-11 08:46:10 +0530
+Processing by SessionsController#get_sso_url as HTML
+Redirected to http://localhost:3000/sso/get_active_token
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/get_sso_url" for 127.0.0.1 at 2021-12-11 08:47:02 +0530
+Processing by SessionsController#get_sso_url as HTML
+Redirected to http://localhost:3000/sso/get_active_token?app_id=200
+Completed 302 Found in 5ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/get_sso_url" for 127.0.0.1 at 2021-12-11 08:47:35 +0530
+Processing by SessionsController#get_sso_url as HTML
+Redirected to http://localhost:3000/sso/get_active_token?app_id=200
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/get_sso_url" for 127.0.0.1 at 2021-12-11 08:49:35 +0530
+Processing by SessionsController#get_sso_url as HTML
+Redirected to http://localhost:3000/sso/get_active_token?app_id=200
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/dashboard" for 127.0.0.1 at 2021-12-11 08:50:12 +0530
+Processing by HomeController#dashboard as */*
+Completed 200 OK in 14ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/sign_in" for 127.0.0.1 at 2021-12-11 08:50:20 +0530
+Processing by SessionsController#sign_in as */*
+  Parameters: {"username"=>"santattech@gmail.com", "password"=>"[FILTERED]", "session"=>{"username"=>"santattech@gmail.com", "password"=>"[FILTERED]"}}
+Completed 200 OK in 192ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/sign_in" for 127.0.0.1 at 2021-12-11 08:50:23 +0530
+Processing by SessionsController#sign_in as */*
+  Parameters: {"username"=>"santattech@gmail.com", "password"=>"[FILTERED]", "session"=>{"username"=>"santattech@gmail.com", "password"=>"[FILTERED]"}}
+Completed 200 OK in 187ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/dashboard" for 127.0.0.1 at 2021-12-11 08:50:51 +0530
+Processing by HomeController#dashboard as */*
+Completed 401 Unauthorized in 13ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/sign_in" for 127.0.0.1 at 2021-12-11 08:50:56 +0530
+Processing by SessionsController#sign_in as */*
+  Parameters: {"username"=>"santattech@gmail.com", "password"=>"[FILTERED]", "session"=>{"username"=>"santattech@gmail.com", "password"=>"[FILTERED]"}}
+Completed 200 OK in 193ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started DELETE "/sign_out" for 127.0.0.1 at 2021-12-11 08:51:25 +0530
+Processing by SessionsController#sign_out as */*
+Completed 401 Unauthorized in 15ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started DELETE "/sign_out" for 127.0.0.1 at 2021-12-11 08:51:35 +0530
+Processing by SessionsController#sign_out as */*
+Completed 200 OK in 37ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_sso_url" for 127.0.0.1 at 2021-12-11 08:51:52 +0530
+Processing by SessionsController#get_sso_url as HTML
+Redirected to http://localhost:3000/sso/get_active_token?app_id=200
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/get_sso_url" for 127.0.0.1 at 2021-12-11 08:53:35 +0530
+Processing by SessionsController#get_sso_url as HTML
+Redirected to http://localhost:3000/sso/get_active_token?app_id=200
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+
+
+Started POST "/sign_in" for 127.0.0.1 at 2021-12-11 08:57:13 +0530
+Processing by SessionsController#sign_in as */*
+  Parameters: {"username"=>"santattech@gmail.com", "password"=>"[FILTERED]", "session"=>{"username"=>"santattech@gmail.com", "password"=>"[FILTERED]"}}
+Completed 200 OK in 191ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
